@@ -1,0 +1,104 @@
++header
+.main-container.order
+    section.page-title.page-title-4
+        .container
+            .row
+                .col-md-12
+                    .col-md-12
+                        h3.uppercase.mb0 구매내역
+    section.mobile-section(style='min-height: 70vh;')
+        .container.mobile-container
+            .row
+                .col-md-12
+                    table.table.cart.mb48.historyTable
+                        thead
+                            tr
+                                th 결제일
+                                th 포트폴리오
+                                th 디자이너
+                                th 상품
+                                th 금액
+                                th 시작일
+                                th 종료일
+                                th.text-center 환불
+                                //th 상태
+                                th.text-center 리뷰
+                        tbody
+                            each orders
+                                tr
+                                    td {{ dateFormat this.createdAt }}
+                                    td {{ portfolioName this.portfolioId }}
+                                    td {{ designerName this.designerId }}
+                                    td {{ productName this.productId }}
+                                    td {{ comma this.price }}원
+                                    //td {{ dateFormat this.paidAt }}
+                                    td {{ effectiveDays this.effectiveDays 'start' }}
+                                    td {{ effectiveDays this.effectiveDays 'end' }}
+                                    if cancelDate(this.effectiveDays.[0] this.status)
+                                        td.text-center.cursor-pointer.cancel-button 결제 취소
+                                    else
+                                        td.text-center -
+                                    //td.text-center {{ cancel this.effectiveDays.[0] }}
+                                    //td 디자이너 승인요청 중
+                                    td.text-center.cursor-pointer.review-btn {{ review this._id }}
+
+    .modal-container.reviewPopup.text-center
+        .foundry_modal.review_modal
+            i.ti-close.popupClose-button
+            h4.popupTitle
+            .starBox
+                div(class='starImageWrap starLeftImageWrap num1 {{starCSS "num1"}} {{clickCSS}}')
+                div(class='starImageWrap starRightImageWrap num2 {{starCSS "num2"}} {{clickCSS}}')
+                div(class='starImageWrap starLeftImageWrap num3 {{starCSS "num3"}} {{clickCSS}}')
+                div(class='starImageWrap starRightImageWrap num4 {{starCSS "num4"}} {{clickCSS}}')
+                div(class='starImageWrap starLeftImageWrap num5 {{starCSS "num5"}} {{clickCSS}}')
+                div(class='starImageWrap starRightImageWrap num6 {{starCSS "num6"}} {{clickCSS}}')
+                div(class='starImageWrap starLeftImageWrap num7 {{starCSS "num7"}} {{clickCSS}}')
+                div(class='starImageWrap starRightImageWrap num8 {{starCSS "num8"}} {{clickCSS}}')
+                div(class='starImageWrap starLeftImageWrap num9 {{starCSS "num9"}} {{clickCSS}}')
+                div(class='starImageWrap starRightImageWrap num10 {{starCSS "num10"}} {{clickCSS}}')
+            hr
+            textarea.content.text-left.reviewContent
+            .btn.btn-lg.btn-rounded.mb0.mt56#write-btn 확인
+
+    .modal-container.reviewPopup.text-center
+        .foundry_modal.cancel_modal
+            i.ti-close.popupClose-button
+            .input-with-label.col-sm-12.text-left
+                h5.mb0 은행
+                .select-option.col-sm-4.grid1.mb0(style='height : 74px; padding-left: 0px;')
+                    i.ti-angle-down(style='position: absolute; z-index:5')
+                    select#bankName
+                        option(value='04') KB국민은행
+                        option(value='23') SC제일은행
+                        option(value='39') 경남은행
+                        option(value='34') 광주은행
+                        option(value='03') 기업은행
+                        option(value='11') 농협
+                        option(value='31') 대구은행
+                        option(value='32') 부산은행
+                        option(value='07') 수협
+                        option(value='88') 신한은행
+                        option(value='05') 외환은행
+                        option(value='20') 우리은행
+                        option(value='71') 우체국
+                        option(value='37') 전북은행
+                        option(value='16') 축협
+                        option(value='81') 하나은행(서울은행)
+                        option(value='53') 한국씨티은행(한미은행)
+                    .error-text
+            //.input-with-label.col-sm-12.text-left
+            //    h5.mb0 은행명
+            //    input#bankName.mb0(type='text', name='bankName' placeholder='은행명을 입력해주세요.')
+            //    .error-text
+            .input-with-label.col-sm-12.text-left
+                h5.mb0 예금주명
+                input#accountName.mb0(type='text', name='accountName' placeholder='예금주명을 입력해주세요.')
+                .error-text
+            .input-with-label.col-sm-12.text-left
+                h5.mb0 계좌번호
+                input#accountNumber.mb0(type='text', name='accountNumber' placeholder='계좌번호를 입력해주세요.')
+                .error-text
+            .btn.btn-lg.btn-rounded.mb0.mt56#cancle-submit 확인
+
+    +footer

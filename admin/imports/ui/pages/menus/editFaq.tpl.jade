@@ -1,0 +1,31 @@
++pageHeading title='FAQ 편집' category='메뉴 관리'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-content
+                    form.form-horizontal
+
+                        .form-group
+                            label.col-md-1.control-label 제목
+                            .col-md-11
+                                input#title.input-sm.form-control(type='text')
+
+                        .form-group
+                            label.col-md-1.control-label 내용
+                            .col-md-11
+                                p 보다 짧은 상하간격으로 작성하고 싶으시면 Shift + Enter 로 줄바꿈 하시기 바랍니다.
+                                textarea#details
+                        .hr-line-dashed
+                        .form-group
+                            label.col-md-12.control-label 작성중인 페이지가 임시저장 되지 않습니다. 작성 중 [저장] 할 때마다 web화면에 그대로 노출되기 때문에 목록에서 [숨기기]로 변경하고 작성 완료 후 해제하는 것을 권장합니다.
+                        .form-group(style='margin: 0 auto;')
+                            .col-md-2.col-md-offset-8.text-right
+                                a(href="{{pathFor 'faqs'}}")
+                                    button.btn.btn-md.btn-block.btn-default(type="button")
+                                        | 취소
+                            .col-md-2.text-right
+                                button.btn.btn-md.btn-block.btn-primary(type="submit")
+                                    | 저장
+
+

@@ -1,0 +1,65 @@
++header
+.main-container.myProfile
+    section.page-title.page-title-4
+        .container
+            .row
+                .col-md-12
+                    .col-md-12
+                        h3.uppercase.mb0 나의 정보
+    section(style='min-height: 450px')
+        .container
+            .row
+                form#profile-form
+                    .col-md-4.text-center.col-md-offset-4
+                        .profile-image(style='background-image: url(" {{ imageUrl }}");')
+                        //if currentUser.profile.userImageUrl
+                        //    .profile-image(style='background-image: url(" {{ currentUser.profile.userImageUrl }}");')
+                        //else
+                        //    .profile-image(style='background-image: url("/img/default-user.png");')
+                        input#profileImage-input.hide(type='file', accept='image/*', name='file')
+                        .btn.btn-sm.btn-rounded.mt16#profileImage-btn(style='border: solid 1px #9b9b9b; background-color: #ffffff; color: #9b9b9b; font-weight: normal;') 수정
+                        .btn.btn-sm.btn-rounded.mt16#profileImageDelete-btn(style='background-color: #ececec; border:0px; color: #4a4a4a; font-weight: normal;') 삭제
+                        p.mb0.text-left E-Mail
+                        input#email.mb0.mt0(type='text' readonly='true' value='{{ currentUser.emails.[0].address }}')
+                        .facebook-logo(style='display : none')
+                            i.themify.ti-facebook
+                        p.mt48.mb0.text-left 이름
+                        div
+                            input#userName.mb0.mt0(type='text' name='name' value='{{ currentUser.profile.userName }}')
+                            .error-text.text-left
+                        .btn.btn-lg.btn-rounded.mr0.mt32#resetPassword-btn(style='width: 100%; background-color: #ececec; color: #4a4a4a; font-size: 16px; border:0px; font-weight: normal;') 비밀번호 변경하기
+                        .btn.btn-lg.btn-rounded#profileUpdate-btn(style='width: 100%; background-color: #ececec; color: #4a4a4a; font-size: 16px; border:0px; font-weight: normal;') 정보수정
+
+                        //.alrigoTestButton 알리고 테스트
+                        //
+                        //.mailChimpTestButton 메일침프
+                        //
+                        //.forgetPassword 패스워드 테스트
+                        //
+                        //p 토큰
+                        //input.testinputToken(type='text')
+                        //
+                        //p 새비밀번호
+                        //input.testinputNewpasword(type='text')
+                        //
+                        //.resetPassword 비밀번호 변경
+
+                        p.dropOut-text(style='margin-top: 70%;') 혹시
+                            span.bold 회원탈퇴
+                            | 를 찾고 계신거라면,
+                            sapn.cursor-pointer.dropOut-btn(style='text-decoration: underline;') 이곳
+                            | 을 클릭해주세요.
+
+        .modal-container
+           .corpPopup(class='{{modalState}}')
+                .col-md-12(style='padding : 0px')
+                    img#profileImageCrop
+                .col-md-12.col-xs-12
+                    .col-md-3.col-md-offset-6.col-xs-4.col-xs-offset-4
+                        .btn.btn-sm.btn-rounded#profileImage-cancel 취소
+                    .col-md-2.col-xs-2
+                        .btn.btn-sm.btn-rounded#profileImage-submit 확인
+
+    +footer
+
+.modal-screen.profile-modal-screen(class='{{modalState}}')

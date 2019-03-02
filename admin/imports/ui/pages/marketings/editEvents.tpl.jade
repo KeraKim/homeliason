@@ -1,0 +1,82 @@
++pageHeading title='이벤트 편집' category='마케팅'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-content
+                    form#event-form.form-horizontal(name='form')
+                        .form-group
+                            label.col-md-1.control-label 기간
+                            .col-md-3
+                                .input-group.datetimepicker
+                                    span.input-group-addon
+                                        i.fa.fa-calendar
+                                    input#startsAt.form-control(type='text')
+                            .col-md-1
+                                label.col-md-1.control-label.text-right ~
+                            .col-md-3
+                                .input-group.datetimepicker
+                                    span.input-group-addon
+                                        i.fa.fa-calendar
+                                    input#endsAt.form-control(type='text' $disabledIf(isEndless))
+                            .col-md-2
+                                .checkbox.checkbox-inline
+                                    //input#inlineCheckbox1(type='checkbox', value='option1')
+                                    input#isEndless.i-checks(type='checkbox' $checkedIf(isEndless))
+                                    label(for='#isEndless') 제한없음
+                        .form-group
+                            label.col-md-1.control-label 제목
+                            .col-md-11
+                                input#title.input-sm.form-control(type='text' name='title' value='{{ event.title }}')
+
+                        .form-group
+                            label.col-md-1.control-label 내용
+                            .col-md-11
+                                p 보다 짧은 상하간격으로 작성하고 싶으시면 Shift + Enter 로 줄바꿈 하시기 바랍니다.
+                                textarea#content
+                        .form-group
+                            label.col-md-1.control-label 바로가기URL
+                            .col-md-11
+                                input#url.input-sm.form-control(type='text' name='url' value='{{ event.linkUrl }}')
+                        .form-group
+                            label.col-md-1.control-label 이미지
+                            .col-md-3
+                                .img-preview.img-preview-sm(style='height: inherit')
+                                    .img(style='background-image : url("{{imageUrl}} "); background-repeat: no-repeat; background-size: 200px auto; background-position: center; width : 200px; height: 200px; margin-top : 20px;')
+                            .col-md-8
+                                label.btn.btn-primary.btn-sm(title='Upload image file', for='inputImage')
+                                    input#inputImage.hide(type='file', accept='image/*', name='file')
+                                    | 이미지 업로드
+                                .btn.btn-primary.btn-sm#deleteImage 이미지 초기화
+                                p
+                                    //| 권장 사이즈: 가로 : 800px, 세로 : 1200px
+                                    | 권장 사이즈: 가로 : 850px, 세로 : 980px
+                        .hr-line-dashed
+                        .form-group
+                            label.col-md-12.control-label 작성중인 페이지가 임시저장 되지 않습니다. 작성 중 [저장] 할 때마다 web화면에 그대로 노출되기 때문에 목록에서 [숨기기]로 변경하고 작성 완료 후 해제하는 것을 권장합니다.
+                        .form-group(style='margin: 0 auto;')
+                            .col-md-2.col-md-offset-6.text-right
+                                a(href="{{pathFor 'notices'}}")
+                                    button.btn.btn-md.btn-block.btn-default(type="button")
+                                        | 취소
+                            .col-md-2.text-right
+                                button#preview.btn.btn-md.btn-block.btn-primary(type="button")
+                                    | 미리보기
+                            .col-md-2.text-right
+                                button#submit.btn.btn-md.btn-block.btn-primary(type="submit")
+                                    | 저장
+
+.previewModal.modal.inmodal(tabindex='-1', role='dialog', aria-hidden='true', style='display: none;')
+    .modal-dialog.modal-lg
+        .modal-content.animated.fadeIn
+            .modal-header
+                button.close(type='button', data-dismiss='modal')
+                    span(aria-hidden='true') ×
+                    span.sr-only Close
+                h4.modal-title 이벤트 미리보기
+
+            .modal-body(style='background-image : url("{{imageUrl}} "); background-repeat: no-repeat; background-size: cover; background-position: center; min-height : 100vh')
+                h2.appendTitleDiv
+                hr
+                .appendContentDiv
+

@@ -1,0 +1,231 @@
++header
+.main-container.product
+    section.page-title.page-title-4
+        .container
+            .row
+                .col-md-12
+                    .col-md-12
+                        h3.uppercase.mb0 {{ portfolio.title }}
+
+    section.bg-secondary.pt32
+        .container
+            .col-md-9
+                .col-md-6
+                    .product-swiper
+                        .swiper-container.gallery-top
+                            .swiper-wrapper
+                                each product.imageUrl
+                                    .swiper-slide(style='background-image:url("{{ this}}")')
+                                    //.swiper-slide(style='background-image:url("http://cfile7.uf.tistory.com/image/24593E4052A55E0F1BF3F6")')
+                                    //.swiper-slide(style='background-image:url("http://www.kccosd.org/files/testing_image.jpg")')
+                                    //.swiper-slide(style='background-image:url("http://blog.jinbo.net/attach/615/200937431.jpg")')
+                                    //.swiper-slide(style='background-image:url("http://blog.jinbo.net/attach/615/200937431.jpg")')
+
+                        .swiper-container.gallery-thumbs
+                            .swiper-wrapper
+                                each product.imageUrl
+                                    .swiper-slide(style='background-image:url("{{ this}}")')
+                .col-md-6
+                    h3(style='margin-top : 10px;') {{ product.title }}
+                    h3(style='color : #009964') {{ comma product.price }}원
+                    table.dotTable
+                        tr
+                            td.firstTd
+                                img(src='/img/checkbox_checked.png', style='width: 17px; height: 17px;')
+                            td(style='font-size: 16px; color: #4a4a4a;') {{onOfflineType product.onOfflineType}} 상품입니다.
+                        tr
+                            td(style='height: 10px;')
+                        tr
+                            td.firstTd
+                                img(src='/img/checkbox_checked.png', style='width: 17px; height: 17px;')
+                            td(style='font-size: 16px; color: #4a4a4a;') 작업기간은 {{workDay product.workDurationInDay}} 입니다.
+                        tr
+                            td(style='height: 10px;')
+                        each summary in productSummary
+                            tr
+                                td.firstTd
+                                    img(src='/img/checkbox_checked.png', style='width: 17px; height: 17px;')
+                                td(style='font-size: 16px; color: #4a4a4a;')= summary
+                            tr
+                                td(style='height: 10px;')
+
+
+                        //tr
+                        //    td.firstTd ●
+                        //    td 방문 실측 후 상담을 진행합니다.
+                        //tr
+                        //    td.firstTd ●
+                        //    td 소품구매 안내도 진행합니다.
+                        //tr
+                        //    td.firstTd ●
+                        //    td 구매대행은 진행하지 않습니다.
+                        //tr
+                        //    td.firstTd ●
+                        //    td 구매대행을 원하시면 Total Package를 구매해주세요. 한큐에 모든 것이 해결됩니다.
+                .col-sm-12(style='height : 18px;')
+                hr
+                .col-sm-12
+                    p {{{ product.detailInfo }}}
+                hr
+                each reviews
+                    .col-sm-12.mb16(style='padding: 0px')
+                        .col-sm-3
+                            //.rateYo.inline-block.mini-rateYo
+                            .starBox
+                                div(class='starImageWrap starLeftImageWrap num1 {{starCSS 1 this.score }} ')
+                                div(class='starImageWrap starRightImageWrap num2 {{starCSS 2 this.score}} ')
+                                div(class='starImageWrap starLeftImageWrap num3 {{starCSS 3 this.score}} ')
+                                div(class='starImageWrap starRightImageWrap num4 {{starCSS 4 this.score}} ')
+                                div(class='starImageWrap starLeftImageWrap num5 {{starCSS 5 this.score}} ')
+                                div(class='starImageWrap starRightImageWrap num6 {{starCSS 6 this.score}} ')
+                                div(class='starImageWrap starLeftImageWrap num7 {{starCSS 7 this.score}} ')
+                                div(class='starImageWrap starRightImageWrap num8 {{starCSS 8 this.score}} ')
+                                div(class='starImageWrap starLeftImageWrap num9 {{starCSS 9 this.score}} ')
+                                div(class='starImageWrap starRightImageWrap num10 {{starCSS 10 this.score}} ')
+                            p.mb0(style='color : #cccccc') {{ dateFormat this.createdAt }}
+                            p.inline-block.mb0(style='margin-right : 20px') {{ userName this.userId }}
+                        .col-sm-9
+                            p.mb0 {{ this.content }}
+
+                //.col-sm-12
+                //    .tabbed-content.text-tabs
+                //        ul.tabs
+                //            li.active(name='description')
+                //                .tab-title
+                //                    span 자세한 상품 소개
+                //            li(name='review')
+                //                .tab-title
+                //                    span 리뷰
+                //        ul.content
+                //            li.active(name='description')
+                //                .tab-content
+                //                    p
+                //                        | {{{ product.detailInfo }}}
+                //            li(name='review')
+                //                each  reviews
+                //                    .tab-content
+                //                        .col-sm-12.mb16(style='padding: 0px')
+                //                            .col-sm-3
+                //                                //.rateYo.inline-block.mini-rateYo
+                //                                .starBox
+                //                                    div(class='starImageWrap starLeftImageWrap num1 {{starCSS 1 this.score }} ')
+                //                                    div(class='starImageWrap starRightImageWrap num2 {{starCSS 2 this.score}} ')
+                //                                    div(class='starImageWrap starLeftImageWrap num3 {{starCSS 3 this.score}} ')
+                //                                    div(class='starImageWrap starRightImageWrap num4 {{starCSS 4 this.score}} ')
+                //                                    div(class='starImageWrap starLeftImageWrap num5 {{starCSS 5 this.score}} ')
+                //                                    div(class='starImageWrap starRightImageWrap num6 {{starCSS 6 this.score}} ')
+                //                                    div(class='starImageWrap starLeftImageWrap num7 {{starCSS 7 this.score}} ')
+                //                                    div(class='starImageWrap starRightImageWrap num8 {{starCSS 8 this.score}} ')
+                //                                    div(class='starImageWrap starLeftImageWrap num9 {{starCSS 9 this.score}} ')
+                //                                    div(class='starImageWrap starRightImageWrap num10 {{starCSS 10 this.score}} ')
+                //                                p.mb0(style='color : #cccccc') {{ dateFormat this.createdAt }}
+                //                                p.mb0 {{ userName this.userId }}
+                //                            .col-sm-9
+                //                                p.mb0 {{ this.content }}
+
+
+                // end of row
+                .row
+
+                // end of row
+            // end of 9 col
+            if isMobile
+                if currentUser._id
+                    .col-md-3.hidden-sm
+                        .widget
+                            h6.title 원하는 시작일정을 선택하세요.
+                            hr
+                            .reserveDatePicker
+                            p.text1 선택되지 않는 날은 예약이 꽉 차있는 상태입니다. 예약이 가능한 일자만 활성화 되어있습니다. 선택이 가능한 일자를 확인해주세요.
+                        .btn.btn-lg.btn-filled#btnPayment(style='width: 100%') 다음
+                unless currentUser._id
+                    .col-md-3
+                        .widget(style='border: solid 1px #ececec; padding : 60px 23px;')
+                            p.text-center.mb0 마음에 드는 홈스타일링을 만나셨나요?
+                            p.text-center.mb0 결제를 진행하시려면
+                            p.text-center.mb0 로그인이 필요합니다.
+                            p.text-center.mb0
+                                span
+                                    a.login-button.cursor-pointer 로그인
+                                sapn 또는
+                                    a(href="{{pathFor 'signup'}}") 회원가입
+                                sapn 후
+                            p.text-center.mb56 더 많은 혜택과 콘텐츠를 만나보세요.
+                            a(href="{{pathFor 'signup'}}")
+                                .btn.btn-lg.btn-filled(style='width: 100%; margin-bottom: 13px; min-width: 0px; padding: 0px;') 무료 회원가입
+                            .btn.btn-lg.btn-filled#facebookButton(style='width: 100%; background-color : #4267b2; min-width: 0px; padding: 0px;') 페이스북으로 쉬운시작
+                            p.text-center 이미 회원이신가요?
+                                sapn
+                                    a.login-button.cursor-pointer 로그인
+            unless isMobile
+                if currentUser._id
+                    .col-md-3.col-sm-12
+                        p 결제는 PC에서만 가능합니다.
+                        .btn.btn-lg.btn-filled.likes-btn(style='width: 100%') 버튼을 눌러 '찜'해 주세요.
+                unless currentUser._id
+                    .col-md-3
+                        .widget(style='border: solid 1px #ececec; padding : 60px 23px;')
+                            p.text-center.mb0 마음에 드는 홈스타일링을 만나셨나요?
+                            p.text-center.mb0 결제를 진행하시려면
+                            p.text-center.mb0 로그인이 필요합니다.
+                            p.text-center.mb0
+                                span
+                                    a.login-button.cursor-pointer 로그인
+                                sapn 또는
+                                    a(href="{{pathFor 'signup'}}") 회원가입
+                                sapn 후
+                            p.text-center.mb56 더 많은 혜택과 콘텐츠를 만나보세요.
+                            a(href="{{pathFor 'signup'}}")
+                                .btn.btn-lg.btn-filled(style='width: 100%; margin-bottom: 13px; min-width: 0px; padding: 0px;') 무료 회원가입
+                            .btn.btn-lg.btn-filled#facebookButton(style='width: 100%; background-color : #4267b2; min-width: 0px; padding: 0px;') 페이스북으로 쉬운시작
+                            p.text-center 이미 회원이신가요?
+                                sapn
+                                    a.login-button.cursor-pointer 로그인
+
+            .col-md-3.col-sm-12
+                .widget(style='border: solid 1px #ececec; padding : 30px 10px;')
+                    //p.text-center.mb24(style='font-size: 18px; font-weight: bold; color: #009964;') 걱정말고 구경하세요!
+                    p.text-center.mb24(style='font-size: 18px; color: #009964;') 걱정말고 구경하세요!
+                    p 서비스가 진행되기 전에는 결제가 완료되지 않습니다.  자세한 취소/환불 정책은 최종 결제페이지에서 확인하실 수 있습니다.
+
+
+                // end of widget
+                // end of widget
+            // end of sidebar
+        // end of container
+    +footer
+
+
+
+//+header
+//.main-container
+//    section
+//        .container
+//            .row
+//                .col-sm-12.text-center
+//                    h4.uppercase.mb16 Slider Thumbnail Controls
+//                    p.lead.mb64
+//                        | Image slider gallery with thumbnail controls. Initialize with 'slider-thumb-controls' class.
+//            // end of row
+//            .row
+//                .col-sm-12.portfolio-swiper
+//                    .swiper-container.gallery-top
+//                        .swiper-wrapper
+//                            .swiper-slide(style='background-image:url("http://blog.jinbo.net/attach/615/200937431.jpg")')
+//                            .swiper-slide(style='background-image:url("http://www.kccosd.org/files/testing_image.jpg")')
+//                            .swiper-slide(style='background-image:url("http://blog.jinbo.net/attach/615/200937431.jpg")')
+//                            .swiper-slide(style='background-image:url("http://blog.jinbo.net/attach/615/200937431.jpg")')
+//                        // Add Arrows
+//                        .swiper-button-next.swiper-button-white
+//                        .swiper-button-prev.swiper-button-white
+//                    .swiper-container.gallery-thumbs
+//                        .swiper-wrapper
+//                            .swiper-slide(style='background-image:url("http://blog.jinbo.net/attach/615/200937431.jpg")')
+//                            .swiper-slide(style='background-image:url("http://www.kccosd.org/files/testing_image.jpg")')
+//                            .swiper-slide(style='background-image:url("http://blog.jinbo.net/attach/615/200937431.jpg")')
+//                            .swiper-slide(style='background-image:url("http://blog.jinbo.net/attach/615/200937431.jpg")')
+//                    // end of image slider
+//            // end of row
+//        // end of container
+//
+//    +footer

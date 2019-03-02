@@ -1,0 +1,7 @@
+node_modules/
+imports/startup/server/
+test/
+build-server.sh
+bundle.sh
+Passengerfile.json
+settings.json

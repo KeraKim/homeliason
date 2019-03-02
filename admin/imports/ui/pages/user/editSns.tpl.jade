@@ -1,0 +1,36 @@
++pageHeading title='SNS 관리' category='프로필 관리'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-content
+                    form.form-horizontal#sns-form(name='form')
+                        .form-group
+                            label.col-md-1.control-label 홈페이지
+                            .col-md-10
+                                input#homepageUrl.input-sm.form-control(type='text' name='homepageUrl' value='{{ designer.profile.homepageUrl }}')
+                        .form-group
+                            label.col-md-1.control-label 블로그
+                            .col-md-10
+                                input#blogUrl.input-sm.form-control(type='text'  name='blogUrl' value='{{ designer.profile.blogUrl }}')
+                        .form-group
+                            label.col-md-1.control-label 인스타그램
+                            .col-md-10
+                                input#instagramUrl.input-sm.form-control(type='text' name='instagram' value='{{ designer.profile.instagramUrl }}')
+                        .form-group
+                            label.col-md-1.control-label 트위터
+                            .col-md-10
+                                input#twitterUrl.input-sm.form-control(type='text' name='twitterUrl' value='{{ designer.profile.twitterUrl }}')
+                        .form-group
+                            label.col-md-1.control-label 페이스북
+                            .col-md-10
+                                input#facebookUrl.input-sm.form-control(type='text' name='facebookUrl' value='{{ designer.profile.facebookUrl }}' )
+
+                        .hr-line-dashed
+                        .form-group(style='margin: 0 auto;')
+                            .col-md-2.col-md-offset-10.text-right
+                                button#submit-button.btn.btn-md.btn-block.btn-primary(type="button")
+                                    | 저장
+
+
+

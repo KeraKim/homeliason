@@ -1,0 +1,17 @@
+.modal-container.text-center
+    .foundry_modal.qnaPopup
+        i.ti-close.popupClose-button
+        form.qna-form
+            h4 문의하기
+            hr
+            div
+                input.mb0.qna-title(type='text' name='title' placeholder='제목을 입력해주세요')
+                .error-text.text-left
+            div
+                textarea.mb0.qna-content(placeholder='문의 내용을 입력해주세요' name='content')
+                .error-text.text-left
+            hr
+            div
+                input.mb0.qna-email(type='text' name='email' placeholder='답변받을 이메일 주소를 입력해주세요.' value='{{ currentUser.emails.[0].address }}')
+                .error-text.text-left
+            .btn.btn-lg.btn-filled.mb0.submit-btn 작성완료

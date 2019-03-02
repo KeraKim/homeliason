@@ -1,0 +1,57 @@
++pageHeading title='수수료율' category='콘텐츠 관리'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-content
+                    form.form-horizontal
+                        .form-group
+                            label.col-md-1.control-label 기간 설정
+                            .col-md-3
+                                .input-group.datetimepicker
+                                    span.input-group-addon
+                                        i.fa.fa-calendar
+                                    input#startsAt.form-control(type='text', value='{{ makeDatetime notice.startsAt }}')
+                            .col-md-1
+                                label.col-md-1.control-label.text-right ~
+                            .col-md-3
+                                .input-group.datetimepicker
+                                    span.input-group-addon
+                                        i.fa.fa-calendar
+                                    input#endsAt.form-control(type='text', value='{{ makeDatetime notice.endsAt }}' $disabledIf(isEndless))
+                            .col-md-2
+                                .checkbox.checkbox-inline
+                                    //input#inlineCheckbox1(type='checkbox', value='option1')
+                                    input#isEndless.i-checks(type='checkbox' $checkedIf(isEndless))
+                                    label(for='#isEndless') 제한없음
+                        .form-group
+                            label.col-md-1.control-label 수수료율
+                            .col-md-3
+                                select#commission.form-control.input-sm(name='portfolio')
+                                    each commission
+                                        option(value='{{ this }}') {{ this }}%
+                        //.form-group
+                          label.col-md-1.control-label 노출 OS
+                          .col-md-2
+                            select#targetOS.form-control.input-sm(name='account')
+                              option(value='ANDROID' $selectedIfEquals(notice.targetOS 'ANDROID')) Android
+                              option(value='IOS' $selectedIfEquals(notice.targetOS 'IOS')) iOS
+                              option(value='ANDROID/IOS' $selectedIfEquals(selectedTargetOS 'ANDROID/IOS')) Android/iOS
+                          label.col-md-1.control-label 공지유형
+                          .col-md-2
+                            select#noticeType.form-control.input-sm(name='account')
+                              option(value='GENERAL' $selectedIfEquals(notice.noticeType 'GENERAL')) 일반
+                              option(value='EVENT' $selectedIfEquals(notice.noticeType 'EVENT')) 이벤트
+                              option(value='UPDATE' $selectedIfEquals(notice.noticeType 'UPDATE')) 업데이트
+
+                        .hr-line-dashed
+                        .form-group(style='margin: 0 auto;')
+                            .col-md-2.col-md-offset-8.text-right
+                                a(href="{{pathFor 'products'}}")
+                                    button.btn.btn-md.btn-block.btn-default.cancel-button(type="button")
+                                        | 취소
+                            .col-md-2.text-right
+                                button.btn.btn-md.btn-block.btn-primary.submit(type="button")
+                                    | 저장
+
+

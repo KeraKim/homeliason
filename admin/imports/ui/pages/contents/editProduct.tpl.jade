@@ -1,0 +1,109 @@
++pageHeading title='상품' category='콘텐츠 관리'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-content
+                    form.form-horizontal#product-form
+                        .form-group
+                            label.col-md-1.control-label 선택
+                            .col-md-3
+                                select#portfolio.form-control.input-sm(name='portfolio')
+                                    option(value='0') 포트폴리오 선택
+                                    each portfolios
+                                        option(value='{{ this._id }}') {{ this.title }}
+                        .form-group
+                            label.col-md-1.control-label 가격
+                            .col-md-10
+                                input#price.input-sm.form-control(type='text' value='{{ product "price" }}' name='price' placeholder='숫자만 입력해 주세요.')
+                        .form-group
+                            label.col-md-1.control-label 상품명
+                            .col-md-10
+                                input#title.input-sm.form-control(type='text' value='{{ product "title" }}' name='title' maxlength='10')
+                        .form-group
+                            label.col-md-1.control-label 구분
+                            .col-md-1.col-md-1-5
+                                .checkbox
+                                    label
+                                        input.i-checks(type='radio' name='radio1' value='online' checked='true' $radioOnline )
+                                        | 온라인 상품
+                            .col-md-2.col-md-1-5
+                                .checkbox
+                                    label
+                                        input#enable1.i-checks(type='radio' name='radio1' value='offline' $radioOffline )
+                                        | 오프라인 상품
+
+                            label.col-md-1.control-label 작업 기간
+                            .col-md-1
+                                select#workDay.form-control.input-sm(name='' $disabledIf(isUnlimited) )
+                                    each workDay
+                                        option(value='{{ this }}') {{this}}일
+                            label.col-md-1.control-label 하루에
+                            .col-md-1
+                                select#workHour.form-control.input-sm(name='' $disabledIf(isUnlimited) )
+                                    each workHour
+                                        option(value='{{this}}') {{this}}개
+                            label.col-md-1.control-label(style='text-align: left;') 진행가능
+
+                            label.col-md-2.col-md-1-5.control-label 예약 무제한으로 받기
+                            .checkbox.checkbox-inline
+                                //input#inlineCheckbox1(type='checkbox', value='option1')
+                                input#isUnlimited.i-checks(type='checkbox' $checkedIf(isUnlimited))
+                                label(for='isUnlimited')
+
+                        .form-group
+                            label.col-md-1.control-label 필요 정보
+                            .col-md-3
+                                .checkbox.checkbox-inline
+                                    input#isOfflineServiceInfo.i-checks(type='checkbox' $checkedIf(isOfflineServiceInfo))
+                                    label(for='isOfflineServiceInfo' style='padding-left: 0px;') 오프라인 서비스용 정보(주소,공간면적,요청공간)
+                            .col-md-3
+                                .checkbox.checkbox-inline
+                                    input#isFurnitureStyling.i-checks(type='checkbox' $checkedIf(isFurnitureStyling))
+                                    label(for='isFurnitureStyling' style='padding-left: 0px;') 가구 스타일링 (방 종류, 제품 구매대행, 부분시공 여부)
+                            .col-md-3
+                                .checkbox.checkbox-inline
+                                    input#isFabricStyling.i-checks(type='checkbox' $checkedIf(isFabricStyling))
+                                    label(for='isFabricStyling' style='padding-left: 0px;') 패브릭 스타일링 (방 종류, 패브릭 시공요청 여부)
+
+                        .form-group
+                            label.col-md-1.control-label 간단 설명
+                            .col-md-10
+                                input#simple.input-sm.form-control(type='text' value='{{ product "simpleInfo" }}' name='simpleInfo' maxlength='54')
+                        .form-group
+                            label.col-md-1.control-label 상품 개요
+                            .col-md-10
+                                textarea#productSummary.form-control(style='height : 140px' name='productSummary' placeholder='상품페이지 상단에 노출되는 영역입니다. Enter를 치면 체크박스로 구분됩니다.') {{ product "productSummary" }}
+                        .form-group
+                            label.col-md-1.control-label 설명
+                            .col-md-10
+                                p 보다 짧은 상하간격으로 작성하고 싶으시면 Shift + Enter 로 줄바꿈 하시기 바랍니다.
+                                textarea#detailInfo
+                        .form-group
+                            label.col-md-1.control-label 이미지
+                            .col-md-8
+                                .img-preview.img-preview-sm(style='height: inherit; text-align: left; width: 100%;')
+                                    each imageUrl
+                                        //img(src="{{ this }}", style='min-width: 0px !important; min-height: 0px !important; max-width: none !important; max-height: none !important; width: 459px; height: 307px; margin-left: -130px; margin-top: -92px;')
+                                        .img(style='margin-left: 20px; display: inline-block; position: relative; background-image : url("{{this}} "); background-repeat: no-repeat; background-size: 200px auto; background-position: center; width : 200px; height: 200px; margin-top : 20px;')
+                                            .btn.btn-primary.btn-sm#deleteOneImage( index='{{@index}}' style='right:0px; top:0px; position: absolute;') 삭제
+                            .col-md-3
+                                label.btn.btn-primary.btn-sm(title='Upload image file', for='inputImage')
+                                    input#inputImage.hide(type='file', accept='image/*', name='file', multiple='multiple')
+                                    | 이미지 업로드
+                                .btn.btn-primary.btn-sm#deleteImage 이미지 초기화
+                                p
+                                    | 권장 사이즈: 가로825px
+                        .hr-line-dashed
+                        .form-group
+                            label.col-md-12.control-label 작성중인 페이지가 임시저장 되지 않습니다. 작성 중 [저장] 할 때마다 web화면에 그대로 노출되기 때문에 목록에서 [숨기기]로 변경하고 작성 완료 후 해제하는 것을 권장합니다.
+                        .form-group(style='margin: 0 auto;')
+                            .col-md-2.col-md-offset-8.text-right
+                                a(href="{{pathFor 'products'}}")
+                                    button.btn.btn-md.btn-block.btn-default(type="button")
+                                        | 취소
+                            .col-md-2.text-right
+                                button#submit-button.btn.btn-md.btn-block.btn-primary(type="button")
+                                    | 저장
+
+

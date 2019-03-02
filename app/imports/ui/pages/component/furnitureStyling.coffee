@@ -1,0 +1,1 @@
+require './furnitureStyling.tpl.jade'

@@ -1,0 +1,109 @@
+form.form-horizontal
+  .form-group.form-group-sm(style='margin: 0 auto;')
+    label.col-md-1.control-label 단어검색
+    .col-md-4
+      .input-group
+        .input-group-btn
+          button.btn.btn-sm.btn-white.dropdown-toggle.co-md-3(data-toggle='dropdown', type='button' style='height: 30px;')
+            | {{ currentSearchIdText }}
+            span.caret
+          ul.dropdown-menu
+            each state('searchIdTexts')
+              li
+                a.searchField(id=this.id href='#') {{ this.text }}
+              //li
+              //  a#title(href='#') 제목
+              //li
+              //  a#name(href='#') 기업명
+              //li
+              //  a#id(href='#') ID
+        input#searchText.form-control(type='text')
+    .col-md-2.text-right
+      button#btnSearch.btn.btn-sm.btn-block.btn-default(type="button")
+        i.fa.fa-search
+        | 검색
+  .form-group(style='margin: 15px auto; 0px')
+    label.col-md-1.control-label 기간설정
+    .col-md-4
+      #datepicker
+        .input-daterange.input-group
+          input#startsAt.input-sm.form-control(type='text', name='start', value=state('startsAt') style='height: 30px;')
+          span.input-group-addon to
+          input#endsAt.input-sm.form-control(type='text', name='end', value=state('endsAt') style='height: 30px;')
+    .col-md-4
+      .btn-group(data-toggle='buttons')
+        label.btn.btn-sm.btn-white
+          input#today(type='radio', name='durations' value='today')
+          |  오늘
+        label.btn.btn-sm.btn-white
+          input#week(type='radio', name='durations' value='week')
+          |  일주일
+        label.btn.btn-sm.btn-white
+          input#month(type='radio', name='durations' value='month')
+          |  1개월
+        label.btn.btn-sm.btn-white
+          input#3months(type='radio', name='durations' value='3months')
+          |  3개월
+        label.btn.btn-sm.btn-white.active
+          input#all(type='radio', name='durations' value='all')
+          |  전체
+
+
+//form.form-horizontal
+//
+//    .form-group.form-group-sm(style='margin: 0 auto;')
+//        .btn-group.col-md-1
+//            button.btn.btn-default.dropdown-toggle(data-toggle='dropdown', aria-expanded='true')
+//                | 전체
+//                span.caret
+//            ul.dropdown-menu
+//                li
+//                    a(href='#') 전체
+//                li
+//                    a(href='#') 가입
+//                li
+//                    a(href='#') 탈퇴
+//                li
+//                    a(href='#') 휴먼
+//                li
+//                    a(href='#') 제재
+//        .col-md-3
+//            form
+//                label.radio-inline
+//                    input(type='radio', name='optradio')
+//                    | 전체
+//                label.radio-inline
+//                    input(type='radio', name='optradio')
+//                    | 승인
+//                label.radio-inline
+//                    input(type='radio', name='optradio')
+//                    | 미승인
+//        .col-md-3
+//            .input-group
+//                span.input-group-addon 닉네임
+//                input.input-sm.form-control(type='text', placeholder='Search')
+//
+//        .form-group(style='margin: 0 auto;')
+//
+//            .col-md-4
+//                #datepicker
+//                    .input-daterange.input-group
+//                        input#startsAt.input-sm.form-control(type='text', name='start', value=state('startsAt'))
+//                        span.input-group-addon to
+//                        input#endsAt.input-sm.form-control(type='text', name='end', value=state('endsAt'))
+//            span.input-group-btn
+//                button.btn.btn-sm.btn-primary(type='button') 검색
+//
+//        .col-sm-4.m-b-xs
+//            .btn-group(data-toggle='buttons')
+//                label.btn.btn-sm.btn-white
+//                    input#option1(type='radio', name='options')
+//                    |  상위 10%
+//                label.btn.btn-sm.btn-white.active
+//                    input#option2(type='radio', name='options')
+//                    |  결제 10%
+//                label.btn.btn-sm.btn-white
+//                    input#option3(type='radio', name='options')
+//                    |  Excel
+//
+

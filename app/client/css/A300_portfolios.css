@@ -1,0 +1,20 @@
+.post-snippet-in-portfolio.create-by-homeliason:after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 22px;
+  width: 44px;
+  height: 44px;
+  background-image: url('/img/watermark.png');
+}
+
+.portfolio-create-by-homeliason .waterMark {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 22px;
+  width: 44px;
+  height: 44px;
+  background-image: url('/img/watermark.png');
+}
+

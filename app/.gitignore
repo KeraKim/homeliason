@@ -1,0 +1,9 @@
+node_modules/
+imports/startup/server/
+test/
+build-apps.sh
+build-server.sh
+bundle.sh
+mobile-config.js
+Passengerfile.json
+settings.json

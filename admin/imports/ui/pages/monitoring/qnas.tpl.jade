@@ -1,0 +1,111 @@
++pageHeading title='사이트 문의' category='메뉴 관리'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-title.text-right
+                    //h5 총 {{totalCount}}건 (노출 {{totalVisibleCount}}건)
+                .ibox-content
+                    +searchForm
+                    form.form-horizontal
+                        .form-group(style='margin: 0 auto;')
+                            label.col-md-1.control-label
+                            .col-md-4
+                                .btn-group
+                                    input#answered(type='checkbox', name='answered' checked)
+                                    |  답변완료
+
+                                    input#nonAnswered(type='checkbox', name='nonAnswered' checked)
+                                    |  답변 대기중
+                            .col-md-4
+                                .btn-group
+                                    input(type='checkbox', name='designer' checked)
+                                    |  디자이너
+
+                                    input(type='checkbox', name='user' checked)
+                                    |  사용자
+                    .hr-line-dashed
+                    .table-responsive
+                        table.table.table-bordered
+                            thead
+                                tr
+                                    th.text-center 등록일
+                                    th.text-center 구분
+                                    th.text-center 문의자
+                                    th.text-center 문의자 이메일
+                                    th.text-center 제목
+                                    th.text-center 상태
+                                    th.text-center 처리일시
+                                    th.text-center 관리
+
+                            tbody
+                                each qnas
+                                    tr
+                                        td.text-center {{ dateFormat this.createdAt }}
+                                        td.text-center {{ this.type }}
+                                        td.text-center {{ userName this.userId }}
+                                        td.text-center {{ this.email }}
+                                        td.text-center {{ this.title }}
+                                        td.text-center {{ isAnswered this.isAnswered }}
+                                        td.text-center {{ dateFormat this.answeredAt }}
+                                        td.text-center.clickLine#qnaPopup-btn [보기]
+
+                            tfoot
+                                tr
+                                    td.footable-visible(colspan='8')
+                                        .pull-right
+                                            button#btnExcel.btn.btn-xs.btn-default(type="button")
+                                                i.fa.fa-file-excel-o
+                                                | 엑셀
+                                tr
+                                    td(colspan='8')
+                                        ul.pagination.pull-right
+                                            +pagination pageTotalCount=pageTotalCount
+
+.qnaModal.modal.inmodal(tabindex='-1', role='dialog', aria-hidden='true', style='display: none;')
+    .modal-dialog.modal-lg
+        .modal-content.animated.fadeIn
+            .modal-header
+                button.close.close-btn(type='button', data-dismiss='modal')
+                    span.close-btn(aria-hidden='true') ×
+                    span.sr-only Close
+                h4.modal-title 문의 내용
+
+
+            .modal-body
+                table.table.table-bordered
+                    tbody
+                        tr
+                            th 문의자 이름
+                            th {{ userName qna.userId }}
+                        tr
+                            th 문의자 메일 주소
+                            th {{ qna.email }}
+                        if qna.portfolioId
+                            tr
+                                th 포트폴리오
+                                th {{ portfolioName qna.portfolioId }}
+                        if qna.productId
+                            tr
+                                th 상품
+                                th {{ productName qna.productId }}
+                        if qna.reviewWriter
+                            tr
+                                th 리뷰 작성자
+                                th {{ qna.reviewWriter }}
+                        tr
+                            th 질문 내용
+                            th.question-text {{ qna.content }}
+                        tr
+                            th 답변
+                            if qna.answer
+                                th {{ qna.answer }}
+                            else
+                                th
+                                    textarea#answer(style='width: 100%; min-height: 200px;')
+
+                unless  qna.answer
+                    button#answerSend-btn.btn.btn-xs.btn-success(type="button" style='float : right')
+                        i.fa
+                        | 답변하기
+

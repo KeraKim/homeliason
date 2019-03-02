@@ -1,0 +1,126 @@
+.nav-container
+    a#top
+    nav
+        .nav-bar
+            .module.left
+                a(href='index.html')
+                    img.logo.logo-light(alt='Foundry', src='img/logo-light.png')
+                    img.logo.logo-dark(alt='Foundry', src='img/logo-dark.png')
+            .module.widget-handle.mobile-toggle.right.visible-sm.visible-xs
+                i.ti-menu
+            .module-group.right
+                .module.left
+                    ul.menu
+                        li.has-dropdown
+                            a(href='/index')
+                                | Home
+                        li.has-dropdown
+                            a(href='/introService')
+                                | 서비스 소개
+                        li.has-dropdown
+                            a
+                                | 포트폴리오
+                        li.has-dropdown
+                            a
+                                | 디자이너
+                        li.has-dropdown
+                            a(href='/notice')
+                                | 공지사항
+                        li.has-dropdown
+                            a(href='/events')
+                                | 이벤트
+                        li.has-dropdown
+                            a(href='/terms')
+                                | 회원가입
+                        li.has-dropdown
+                            a(href='/login')
+                                | 로그인
+
+                // end of menu module
+.main-container.qna
+    section
+        .container
+            .row
+                .col-sm-6.col-md-5
+                    h4.uppercase Get In Touch
+                    p
+                        | At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
+                    hr
+                    p
+                        | 438 Marine Parade
+                        br
+                        |  Elwood, Victoria
+                        br
+                        |  P.O Box 3184
+                    hr
+                    p
+                        strong E:
+                        |  hello@foundry.net
+                        br
+                        strong P:
+                        |  +614 3948 2726
+                        br
+                .col-sm-6.col-md-5.col-md-offset-1
+                    form.form-email(data-success='Thanks for your submission, we will be in touch shortly.', data-error='Please fill all fields correctly.')
+                        input.validate-required(type='text', name='name', placeholder='Your Name')
+                        input.validate-required.validate-email(type='text', name='email', placeholder='Email Address')
+                        textarea.validate-required(name='message', rows='4', placeholder='Message')
+                        button(type='submit') Send Message
+            // end of row
+        // end of container
+    footer.footer-1.bg-dark
+        .container
+            .row
+                .col-md-3.col-sm-6
+                    img.logo(alt='Logo', src='img/logo-light.png')
+                .col-md-3.col-sm-6
+                    .widget
+                        h6.title Recent Posts
+                        hr
+                        ul.link-list.recent-posts
+                            li
+                                a(href='#') Hugging pugs is super trendy
+                                span.date
+                                    | February
+                                    span.number 14, 2015
+                            li
+                                a(href='#') Spinning vinyl is oh so cool
+                                span.date
+                                    | February
+                                    span.number 9, 2015
+                            li
+                                a(href='#') Superior theme design by pros
+                                span.date
+                                    | January
+                                    span.number 27, 2015
+                    // end of widget
+                .col-md-3.col-sm-6
+                    .widget
+                        h6.title Latest Updates
+                        hr
+
+                .col-md-3.col-sm-6
+                    .widget
+                        h6.title Instagram
+
+                    // end of widget
+            // end of row
+            .row
+                .col-sm-6
+                    span.sub © Copyright 2016 - Medium Rare
+                .col-sm-6.text-right
+                    ul.list-inline.social-list
+                        li
+                            a(href='#')
+                                i.ti-twitter-alt
+                        li
+                            a(href='#')
+                                i.ti-facebook
+                        li
+                            a(href='#')
+                                i.ti-dribbble
+                        li
+                            a(href='#')
+                                i.ti-vimeo-alt
+        // end of container
+        a.btn.btn-sm.fade-half.back-to-top.inner-link(href='#top') Top

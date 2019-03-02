@@ -1,0 +1,47 @@
++header
+.main-container.contactHistory
+    section.page-title.page-title-4
+        .container
+            .row
+                .col-md-12
+                    .col-md-12
+                        h3.uppercase.mb0 문의내역
+    section.mobile-section(style='min-height: 70vh;')
+        .container.mobile-container
+            .row
+                .col-md-12
+                    table.table.cart.mb48.historyTable
+                        thead
+                            tr
+                                th 구분
+                                th 날짜
+                                th 포트폴리오
+                                th 디자이너
+                                th 제목
+                        tbody
+                            each  qnas
+                                tr.cursor-pointer
+                                    td {{ this.type }}
+                                    td {{ dateFormat this.createdAt }}
+                                    if this.portfolioId
+                                        td {{ portfolio this.portfolioId }}
+                                    else
+                                        td -
+                                    if this.designerId
+                                        td {{ designer this.designerId }}
+                                    else
+                                        td -
+                                    td {{ this.title }}
+
+    .modal-container.reviewPopup.text-center
+        .foundry_modal.userViewQnaPopup
+            i.ti-close.popupClose-button
+            h4 문의내역
+            hr
+            .content.text-left {{ qna.content }}
+            if qna.isAnswered
+                h4.mt64 답변
+                hr
+                .content.text-left {{ qna.answer }}
+
+    +footer

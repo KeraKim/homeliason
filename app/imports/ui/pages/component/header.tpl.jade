@@ -1,0 +1,82 @@
+.nav-container.header
+    nav
+        .nav-bar.text-center
+            .col-md-2.col-md-push-5.col-sm-12.text-center
+                a(style='cursor: pointer;' name='index')
+                    .vnu
+                        img.image-xxs(style='max-height: 40px; margin-bottom: 6px;' alt='logo', src='/img/logo-dark-small.png')
+            .col-sm-12.col-md-5.col-md-pull-2.overflow-hidden-xs.mobile-top-line
+                ul.menu.inline-block.pull-right
+                    li
+                        a(style='font-size: 16px;' class='{{ isOnClass "portfolios" }}' name='portfolios') 포트폴리오
+                    li
+                        a(style='font-size: 16px;' class='{{ isOnClass "designers" }}' name='designers') 디자이너
+            .col-sm-12.col-md-5.pb-xs-24.mobile-menu-bar
+                ul.menu
+                    li
+                        a(style='font-size: 16px;' class='{{ isOnClass "intro" }}' name='intro') 서비스소개
+                    li
+                        a(style='font-size: 16px;' class='{{ isOnClass "events" }}' name='events') 이벤트
+                    .pcHide
+                        if currentUser
+                            li.user-name.has-dropdown(style='margin-top: 10px;')
+                                if currentUser.profile.isApproved
+                                    img.designer-logo(src='/img/designer-bege.png')
+                                if currentUser.profile.userProfileImageUrl
+                                    img.user-image(src=' {{ currentUser.profile.userProfileImageUrl }}')
+                                else
+                                    img.user-image(src='/img/default-user.png')
+                                .userName {{ currentUser.profile.userName }}
+                        if currentUser
+                            li
+                                a(style='font-size: 16px;' name='order') 구매내역
+                            li
+                                a(style='font-size: 16px;' name='likes') 찜한 리스트
+                            li
+                                a(style='font-size: 16px;' name='qnas') 문의 내역
+                            li
+                                a(style='font-size: 16px;' name='myProfile') 나의 정보
+                            if currentUser.profile.isApproved
+                                li
+                                    a.admin-button(style='font-size: 16px;' name='adminPage' href='') 디자이너 페이지
+                            if currentUser.profile.isAdmin
+                                li
+                                    a.admin-button(style='font-size: 16px;' name='adminPage' href='') 관리자 페이지
+                            li
+                                .logout(style='font-size: 16px; color :#292929') 로그아웃
+                    if currentUser
+                        li.user-name.has-dropdown
+                            .mobileHide
+                                if currentUser.profile.isApproved
+                                    img.designer-logo(src='/img/designer-bege.png')
+                                if currentUser.profile.userProfileImageUrl
+                                    img.user-image(src=' {{ currentUser.profile.userProfileImageUrl }}')
+                                else
+                                    img.user-image(src='/img/default-user.png')
+                                .userName {{ currentUser.profile.userName }}
+                            ul.mega-menu
+                                li
+                                    ul(style='right : 0')
+                                        li
+                                            a(name='order') 구매내역
+                                        li
+                                            a(name='likes') 찜한 리스트
+                                        li
+                                            a(name='qnas') 문의 내역
+                                        li
+                                            a(name='myProfile') 나의 정보
+                                        if currentUser.profile.isApproved
+                                            li
+                                                a.admin-button(name='adminPage' href='') 디자이너 페이지
+                                        if currentUser.profile.isAdmin
+                                            li
+                                                a.admin-button(name='adminPage' href='') 관리자 페이지
+                                        li
+                                            .logout 로그아웃
+                    unless currentUser
+                        li
+                            a(style='font-size: 16px;' class='{{ isOnClass "signup" }}' name='signup') 회원가입
+                        li
+                            a(style='font-size: 16px;' class='{{ isOnClass "login" }}' name='login') 로그인
+        .module.widget-handle.mobile-toggle.right.visible-sm.visible-xs.absolute-xs(style='border : 0px !important')
+            i.ti-menu

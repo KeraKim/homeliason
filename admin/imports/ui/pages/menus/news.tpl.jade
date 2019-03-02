@@ -1,0 +1,35 @@
+//+pageHeading title='새로운 소식' category='안내사항'
+//.wrapper.wrapper-content.animated.fadeInRight
+//    .row
+//        .col-lg-12
+//            .ibox.float-e-margins
+//                .ibox-content
+//                    each  news
+//                        h5 {{ this.text }}
+
+
++pageHeading title='새로운 소식' category='안내사항'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+
+                .ibox-content
+                    .table-responsive
+                        table.table.table-bordered
+                            thead
+                                tr
+                                    th.text-center 새로운 소식
+
+                            tbody
+                                each news
+                                    tr
+                                        td
+                                            p.text-left.clickLine.newsTitle(style='position : relative; width: max-content;') {{ makeDate this.createdAt }} {{ this.text }}
+                                                unless this.read
+                                                    .newBadge !
+
+                                tr
+                                    td(colspan='8')
+                                        ul.pagination.pull-right
+                                            +pagination pageTotalCount=pageTotalCount

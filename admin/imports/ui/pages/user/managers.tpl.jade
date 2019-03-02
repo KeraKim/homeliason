@@ -1,0 +1,77 @@
++pageHeading title='담당자 관리' category='프로필 관리'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-title.text-right
+                    //h5 총 {{totalCount}}건
+                .ibox-content
+                    +searchForm
+                    .hr-line-dashed
+                    .table-responsive
+                        table.table.table-bordered
+                            thead
+                                tr
+                                    th.text-center
+                                        input.visible-check-all(type='checkbox', name='checkAll')
+                                    th.text-center 지정일
+                                    th.text-center 이름
+                                    th.text-center 이메일
+                                    th.text-center 휴대전화
+                            tbody
+                                each users
+                                    tr
+                                        td.text-center
+                                            input.visible-check(type='checkbox' name='input[]')
+                                        td.text-center {{ makeDate this.profile.createdAt }}
+                                        th.text-center {{ this.profile.userName }}
+                                        td.text-center {{ this.emails.[0].address }}
+                                        td.text-center {{ this.profile.firstMobileNumber }}-{{ this.profile.meddleMobileNumber }}-{{ this.profile.lastMobileNumber }}
+                            tfoot
+                                tr
+                                    td.footable-visible(colspan='5')
+                                        button#btnRemove.btn.btn-xs.btn-danger(type="button")
+                                            i.fa.fa-trash-o
+                                            | 삭제
+                                        .pull-right
+                                            button#btnEditManager.btn.btn-xs.btn-success(type="button")
+                                                i.fa
+                                                | 관리자 추가
+                                            button#btnExcel.btn.btn-xs.btn-default(type="button")
+                                                i.fa.fa-file-excel-o
+                                                | 엑셀
+                                tr
+                                    td(colspan='5')
+                                        ul.pagination.pull-right
+                                            +pagination pageTotalCount=pageTotalCount
+
+.buyModal.modal.inmodal(tabindex='-1', role='dialog', aria-hidden='true', style='display: none;')
+    .modal-dialog.modal-lg
+        .modal-content.animated.fadeIn
+            .modal-header
+                button.close.close-btn(type='button', data-dismiss='modal')
+                    span.close-btn(aria-hidden='true') ×
+                    span.sr-only Close
+                h4.modal-title 구매내역
+
+
+            .modal-body
+                table.table.table-bordered
+                    thead
+                        tr
+                            th 구매일
+                            th 포트폴리오
+                            th 상품
+                            th 금액
+                            th 상태
+                    tbody
+                        each userBuy
+                            tr
+                                th {{ dateFormat this.createdAt }}
+                                th {{ this.portfolioId }}
+                                th {{ this.productId }}
+                                th {{ this.price }}
+                                th {{ this.status }}
+
+
+

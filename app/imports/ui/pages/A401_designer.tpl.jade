@@ -1,0 +1,163 @@
++header
+.main-container.designer
+    section.page-title
+        .container
+
+    section.bg-secondary.pt32
+        .container
+            .col-md-9
+                .row.masonry-loader
+                    .col-sm-12.text-center
+                        .spinner
+                .row.masonry.masonryFlyIn.mb40
+
+                    .col-sm-6.post-snippet.masonry-item.text-center(style='min-height: 397px')
+                        //h4.text-center.bold.mb24 {{ designer.profile.designerName }}
+                        h4.text-center.mb24.mt16 {{ designer.profile.designerName }}
+                        table.large-profile-table
+                            tr
+                                td.td1(colspan="2")
+                                    p.specialtyText(style='padding : 0px 10%;') {{ designer.profile.specialty }}
+                            tr
+                                td.text-left.careerText(colspan="2") 경력 : {{ careerYear designer.profile.careerYear }} {{ careerMonth designer.profile.careerMonth }}
+                                    span(style='margin : 0px 10px;') |
+                                    if designer.profile.reviewScore
+                                        sapn 평점 : {{ designer.profile.reviewScore }}
+                                    else
+                                        sapn 평점 : 0
+                            tr
+                                td.text-left.activeAreaText(style='line-height: 24px !important;') 지역 : {{ designer.profile.activeArea }}
+
+                        .width100.mb40.mt40
+                            if designer.profile.homepageUrl
+                                a(href='{{designer.profile.homepageUrl}}' target='_blank')
+                                    i.themify.ti-home(style='font-size : 18px; color : black; margin: 0px 5px;')
+                            if designer.profile.blogUrl
+                                a(href='{{designer.profile.blogUrl}}' target='_blank')
+                                    i.themify.ti-pencil(style='font-size : 18px; color : black; margin: 0px 5px;')
+                            if designer.profile.instagramUrl
+                                a(href='{{designer.profile.instagramUrl}}' target='_blank')
+                                    i.themify.ti-instagram(style='font-size : 18px; color : black; margin: 0px 5px;')
+                            if designer.profile.twitterUrl
+                                a(href='{{designer.profile.twitterUrl}}' target='_blank')
+                                    i.themify.ti-twitter-alt(style='font-size : 18px; color : black; margin: 0px 5px;')
+                            if designer.profile.facebookUrl
+                                a(href='{{designer.profile.facebookUrl}}' target='_blank')
+                                    i.themify.ti-facebook(style='font-size : 18px; color : black; margin: 0px 5px;')
+
+                        .width100.height80Box
+                            //each designer.profile.tags
+                            //    .btn-rounded.tag-button {{ this }}
+                            //.btn.btn-tag2.btn-rounded.mb16 #음악
+                            //.btn.btn-tag2.btn-rounded.mb16 #모던
+                            //.btn.btn-tag2.btn-rounded.mb16 #중세
+                            //.btn.btn-tag2.btn-rounded.mb16 #유럽풍
+
+                    .col-sm-6.post-snippet.masonry-item
+                        .large-user-image(style='background-image : url(" {{ designer.profile.designerSquareImageUrl }} ")')
+                            //img(src='http://www.kriss.re.kr/download/1484182399147.png')
+
+                    .col-sm-12.post-snippet.masonry-item
+                        //h4.bold 디자이너 소개
+                        h4 디자이너 소개
+                        p {{{ designer.profile.detailInfo }}}
+                        //h4.bold.mb0.mt48 디자이너 포트폴리오
+                        h4.mb0.mt48 디자이너 포트폴리오
+
+                    each portfolios
+                        .col-sm-6.post-snippet.masonry-item
+                            div.post-snippet-in-portfolio(class='{{createByHomeliason this.progressedByHomeLiaison}}')
+                                a
+                                    img.portfolio-item.cursor-pointer(alt='Post Image', src='{{ this.imageUrl.[0] }}')
+                                .inner
+                                    a
+                                        img.user-image(src=' {{ designer.profile.designerSquareImageUrl }}')
+                                        h5.mb0.titleText(style='vertical-align: -webkit-baseline-middle; margin-top: 4px; line-height: 20px;') {{ this.title }}
+                                        span.inline-block.mb16(style='margin-top:6px') {{ this.workedYear }}년 {{ month this.workedMonth }} {{ day this.workedDay }} | {{ this.sido }} {{ this.gugun }} | {{ productCount this.productCount }}
+                                    hr
+                                    p
+                                        | {{ this.simpleInfo }}
+                                    a.btn.btn-sm.btn-rounded.portfolio-item 자세히 보기
+                                    ul.tags.pull-right
+                                        li
+                                            .custom-btn.likes-btn(style='margin-right:15px')
+                                                img(src='{{ likeImage this.likeUserIds }}')
+                                        li
+                                            .custom-btn.share-btn
+                                                img(src='/img/share.png')
+                                            .ssk-xs.ssk-group.james.share
+                                                a.ssk.ssk-facebook.share-btn(href='' data-image="{{ this.imageUrl.[0] }}" data-text="{{ this.title }}" data-title="{{ this.title }}" data-url="http://52.78.179.150/share/contentManagement/designers/{{this.designerId}}/portfolios/{{this._id}}")
+                                                    i.themify.ti-facebook
+                                                a.ssk.ssk-twitter.share-btn(href='' data-image="{{ this.imageUrl.[0] }}" data-text="{{ this.title }}" data-url="http://52.78.179.150/share/contentManagement/designers/{{this.designerId}}/portfolios/{{this._id}}")
+                                                    i.themify.ti-twitter
+                                                a.ssk.ssk-google-plus.share-btn(href='' data-image="{{ this.imageUrl.[0] }}" data-text="{{ this.title }}" data-url="http://52.78.179.150/share/contentManagement/designers/{{this.designerId}}/portfolios/{{this._id}}")
+                                                    i.themify.ti-google
+
+                .pcHide
+                    .row.more-btn-box
+                        .col-md-4
+                            hr.middle-hr.mobileHide
+                        .col-md-4.text-center
+                            .btn.btn-lg.btn-rounded.btn-4.more-btn 더 보기
+                        .col-md-4
+                            hr.middle-hr.mobileHide
+                // end of row
+            // end of 9 col
+            .col-md-3.hidden-sm
+                .widget.mb16
+                    h6.title 다른 디자이너도 만나보세요 !
+                    hr
+                    each tag in designerTags
+                        .btn-rounded.sideTag-button= tag
+                        each otherDesigners( tag )
+                            .widget.widget-profile.mb24.cursor-pointer
+                                .user-image
+                                    img(src='{{this.profile.designerSquareImageUrl}}')
+                                //h5.text-center.bold.mt16.mb16 {{this.profile.designerName}}
+                                h5.text-center.mt16.mb16 {{this.profile.designerName}}
+
+                                table.profile-table
+                                    tr
+                                        td.td1(colspan="2") {{this.profile.specialty}}
+                                    tr
+                                        //td(style='height: 34px;' colspan="2") 경력 : {{this.profile.careerYear}}년 {{this.profile.careerMonth}}개월 | 평점 : {{ otherAverageScore otherAverageScore }}
+                                        td.text-left(style='height: 10px; padding-left : 8%;' colspan="2") 경력 : {{ this.profile.careerYear }}년 {{ this.profile.careerMonth }}개월
+                                            span(style='margin : 0px 10px;') |
+                                            if this.profile.reviewScore
+                                                sapn 평점 : {{ this.profile.reviewScore }}
+                                            else
+                                                sapn 평점 : 0
+                                    tr
+                                        //td.td2(style='line-height: 18px !important;') 지역 :
+                                        //td.text-left(style='line-height: 18px !important;') {{this.profile.sido}}
+                                        td.text-left(style='line-height: 24px !important; padding-left : 8%;') 지역 : {{ this.profile.activeArea }}
+
+                //.btn.btn-tag2.btn-rounded.mb14 #모던하게
+                //
+                //.widget.widget-profile.mb24
+                //    .user-image
+                //        img(src='/img/fashion1.jpg')
+                //    h5.text-center.bold.mt16.mb16 홍길동 디자이너
+                //
+                //    table.profile-table
+                //        tr
+                //            td.td1(colspan="2") 홈스타일, 패브릭, 어쩌구
+                //        tr
+                //            td(style='height: 34px;' colspan="2") 경력 : 11년 11개월 | 평점 : 4.25
+                //        tr
+                //            td.td2(style='line-height: 18px !important;') 지역 :
+                //            td.text-left(style='line-height: 18px !important;') 서울, 경기도인근, 전라도, 경상도, 충청도, 강원도, 전국
+                // end of widget
+                // end of widget
+            .mobileHide-w990
+                .col-md-9
+                    .row.more-btn-box
+                        .col-md-4
+                            hr.middle-hr.mobileHide
+                        .col-md-4.text-center
+                            .btn.btn-lg.btn-rounded.btn-4.more-btn 더 보 기
+                        .col-md-4
+                            hr.middle-hr.mobileHide
+            // end of sidebar
+        // end of container
+    +footer

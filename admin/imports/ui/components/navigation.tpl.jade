@@ -1,0 +1,155 @@
+nav.navbar-default.navbar-static-side(role='navigation')
+  .sidebar-collapse
+    // Close canvas menu used only on OffCanvas page
+    // You can remove this tag if you dont use offCanvas menu
+    a.close-canvas-menu
+      i.fa.fa-times
+    // End offCanvas menu toggle
+    ul#side-menu.nav.metismenu
+      li.nav-header
+        .dropdown.profile-element
+          //span
+            img.img-circle(alt='image', src='/img/profile_small.jpg')
+          a.dropdown-toggle(data-toggle='dropdown', href='#')
+            span.clear
+              span.block.m-t-xs
+                if currentUser.profile.isAdmin
+                  strong.font-bold  관리자님
+                if currentUser.profile.isApproved
+                  strong.font-bold  디자이너 {{ currentUser.profile.designerName }}님
+              span.text-muted.text-xs.block
+                | 환영합니다.
+        .logo-element
+          | P+
+      // 사이트 관리자만 보여질곳
+      if currentUser.profile.isAdmin
+        li
+          a(href='#')
+            i.fa.fa-bars
+            span.nav-label(data-i18n='nav.menulevels') 메뉴 관리
+            span.fa.arrow
+          ul.nav.nav-second-level
+            li
+              a(href='{{pathFor "notices"}}') 공지사항
+            li
+              a(href='{{pathFor "faqs"}}') FAQ
+            li
+              a(href='{{pathFor "terms"}}') 약관 관리
+            li
+              a(href='{{pathFor "editGuide"}}') 안내 사항
+      // 사이트 관리자만 보여질곳
+      if currentUser.profile.isAdmin
+        li
+          a(href='#')
+            i.fa.fa-users
+            span.nav-label(data-i18n='nav.menulevels') 회원 관리
+            span.fa.arrow
+          ul.nav.nav-second-level
+            li
+              a(href='{{pathFor "designers"}}') 디자이너
+            li
+              a(href='{{pathFor "users"}}') 사용자
+      if currentUser.profile.isApproved
+        li
+          a(href='#')
+            i.fa.fa-comments
+            span.nav-label(data-i18n='nav.menulevels') 안내사항
+            span.fa.arrow
+          ul.nav.nav-second-level
+            li
+              a(href='{{pathFor "news"}}') 새로운 소식
+            li
+              a(href='{{pathFor "userGuide"}}') 안내 사항
+      if currentUser.profile.isApproved
+        li
+          a(href='#')
+            i.fa.fa-user
+            span.nav-label(data-i18n='nav.menulevels') 프로필 관리
+            span.fa.arrow
+          ul.nav.nav-second-level
+            if currentUser.profile.isApproved
+              unless currentUser.profile.isManager
+                li
+                  a(href='{{pathFor "editDesignerProfile"}}') 디자이너 정보
+                li
+                  a(href='{{pathFor "editCompanyProfile"}}') 기본 정보
+            li
+              a(href='{{pathFor "managers"}}') 담당자 관리
+            li
+              a(href='{{pathFor "editSns"}}') SNS 관리
+            //li
+            //  a(href='{{pathFor "editAccount"}}') 계좌 관리
+      li
+        a(href='#')
+          i.fa.fa-archive
+          span.nav-label(data-i18n='nav.menulevels') 콘텐츠 관리
+          span.fa.arrow
+        ul.nav.nav-second-level
+          li
+            a(href='{{pathFor "portfolios"}}') 포트폴리오
+          li
+            a(href='{{pathFor "products"}}') 상품
+          if currentUser.profile.isApproved
+            li
+              a(href='{{pathFor "schedule"}}') 일정관리
+      li
+        a(href='#')
+          i.fa.fa-money
+          span.nav-label(data-i18n='nav.menulevels') 정산 관리
+          span.fa.arrow
+        ul.nav.nav-second-level
+          li
+            a(href='{{pathFor "sales"}}') 판매 내역
+          if currentUser.profile.isApproved
+            li
+              a(href='{{pathFor "designerAdjustments"}}') 정산 내역
+          // 사이트 관리자만 보여질곳
+          if currentUser.profile.isAdmin
+            li
+              a(href='{{pathFor "adjustments"}}') 디자이너 정산
+      li
+        a(href='#')
+          i.fa.fa-television
+          span.nav-label(data-i18n='nav.menulevels') 모니터링
+          span.fa.arrow
+        ul.nav.nav-second-level
+          if currentUser.profile.isAdmin
+            li
+              a(href='{{pathFor "qnas"}}') 사이트 문의
+            li
+              a(href='{{pathFor "adminDesignerQnas"}}') 디자이너 문의
+            li
+              a(href='{{pathFor "reviews"}}') 리뷰 관리
+          if currentUser.profile.isApproved
+            li
+              a(href='{{pathFor "designerQnas"}}') 문의 관리
+            li
+              a(href='{{pathFor "complainReview"}}') 리뷰 관리
+      li
+        a(href='#')
+          i.fa.fa-smile-o
+          span.nav-label(data-i18n='nav.menulevels') 마케팅
+          span.fa.arrow
+        ul.nav.nav-second-level
+          if currentUser.profile.isAdmin
+            li
+              a(href='{{pathFor "events"}}') 이벤트
+            // 사이트 관리자만 보여질곳
+            li
+              a(href='{{pathFor "tags"}}') 태그 관리
+          if currentUser.profile.isApproved
+            li
+              a(href='{{pathFor "applyEvent"}}') 이벤트
+
+          //li
+          //  a(href='{{pathFor "userActivities"}}') 회원결제내역
+      //li
+      //  a(href='#')
+      //    i.fa.fa-sitemap
+      //    span.nav-label(data-i18n='nav.menulevels') 메뉴 관리
+      //    span.fa.arrow
+      //  ul.nav.nav-second-level
+      //    li
+      //      a(href='{{pathFor "notices"}}') 공지사항
+
+

@@ -1,0 +1,179 @@
++pageHeading title='기본 정보' category='프로필 관리'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-content
+                    form.form-horizontal#compnay-form(name='form')
+                        .form-group
+                            h4.col-md-offset-1(style='color:red') 기본정보를 변경하면 관리자 승인이 완료될때 까지 활동에 제약이 있을 수 있습니다. 신중하게 변경해 주시기 바랍니다.
+                        .form-group
+                            label.col-md-1.control-label 사업자 구분
+                            .col-md-2
+                                .checkbox
+                                    label
+                                        input.i-checks(type='radio' name='businessType' value='법인 사업자(일반과세)' $radioCheck('법인 사업자(일반과세)') )
+                                        | 법인 사업자(일반과세)
+                            .col-md-2
+                                .checkbox
+                                    label
+                                        input.i-checks(type='radio' name='businessType' value='개인 사업자(일반과세)' $radioCheck('개인 사업자(일반과세)')  )
+                                        | 개인 사업자(일반과세)
+                            .col-md-2
+                                .checkbox
+                                    label
+                                        input.i-checks(type='radio' name='businessType' value='프리랜서(사업자 없음)' $radioCheck('프리랜서(사업자 없음)')  )
+                                        | 프리랜서(사업자 없음)
+                            .col-md-2
+                                .checkbox
+                                    label
+                                        input.i-checks(type='radio' name='businessType' value='개인 사업자(간이과세)' $radioCheck('개인 사업자(간이과세)')  )
+                                        | 개인 사업자(간이과세)
+                        if businessType
+                            .form-group
+                                label.col-md-1.control-label 회사이름
+                                .col-md-10
+                                    input#companyName.input-sm.form-control(type='text' name='companyName' value='{{ designer.profile.companyName}}')
+                            .form-group
+                                label.col-md-1.control-label 사업자등록번호
+                                .col-md-10
+                                    input#businessLicenseNumber.input-sm.form-control(type='text' name='businessLicenseNumber' value='{{ designer.profile.businessLicenseNumber}}')
+                        .form-group
+                            label.col-md-1.control-label 대표자 이름
+                            .col-md-10
+                                input#ceoName.input-sm.form-control(type='text' name='ceoName' value='{{ designer.profile.ceoName}}')
+                        .form-group
+                            label.col-md-1.control-label 개업일
+                            .col-md-2
+                                select.form-control.input-sm#year(name='foundedYear')
+                                    option(value='-1') 년
+                                    each foundedDate('year')
+                                        option {{ this }}
+                            .col-md-2
+                                select.form-control.input-sm.selectMonth#month(name='foundedMonth')
+                                    option(value='-1') 월
+                                    each foundedDate('month')
+                                        option {{ this }}
+                            .col-md-2
+                                select.form-control.input-sm#day(name='foundedDay')
+                                    option(value='-1') 일
+                                    each foundedDate2
+                                        option {{ this }}
+                        .form-group
+                            label.col-md-1.control-label 주소
+                            //.col-md-2
+                            //    select.form-control.input-sm#sido
+                            //        option(value='') 시
+                            //.col-md-2
+                            //    select.form-control.input-sm#gugun
+                            //        option(value='') 도
+                            .col-md-4
+                                input.input-sm.form-control#sido(type='text' name='sido' value='{{ designer.profile.sido}}' readonly='true')
+                            //.col-md-2
+                            //    input.input-sm.form-control#gugun(type='text' name='gugun' value='{{ designer.profile.gugun}}' readonly='true')
+                            .col-md-4
+                                input.input-sm.form-control#eubmyeondong(type='text' name='eubmyeondong' value='{{ designer.profile.eubmyeondong}}')
+                        .form-group
+                            label.col-md-1.control-label 전화번호
+                            .col-md-2
+                                select#firstPhoneNumber.form-control.input-sm(name='')
+                                    option 02
+                                    option 051
+                                    option 053
+                                    option 032
+                                    option 062
+                                    option 042
+                                    option 052
+                                    option 044
+                                    option 031
+                                    option 033
+                                    option 043
+                                    option 041
+                                    option 063
+                                    option 061
+                                    option 054
+                                    option 055
+                                    option 064
+                                    option 070
+                            .col-md-2
+                                input#meddlePhoneNumber.input-sm.form-control(type='text' name='phoneInput2' value='{{ designer.profile.meddlePhoneNumber }}')
+                            .col-md-2
+                                input#lastPhoneNumber.input-sm.form-control(type='text' name='phoneInput3' value='{{ designer.profile.lastPhoneNumber }}')
+                        .form-group
+                            label.col-md-1.control-label 휴대폰
+                            .col-md-2
+                                select#firstMobileNumber.form-control.input-sm(name='')
+                                    option 010
+                                    option 011
+                                    option 016
+                                    option 017
+                                    option 019
+                            .col-md-2
+                                input#meddleMobileNumber.input-sm.form-control(type='text' name='mobileInput2' value='{{ designer.profile.meddleMobileNumber }}')
+                            .col-md-2
+                                input#lastMobileNumber.input-sm.form-control(type='text' name='mobileInput3' value='{{ designer.profile.lastMobileNumber }}')
+                        .form-group
+                            label.col-md-1.control-label 이메일
+                            .col-md-6
+                                input#designerEmail.input-sm.form-control(type='text' name='email' value='{{ designer.profile.designerEmail }}')
+                        .form-group
+                            label.col-md-1.control-label 팩스
+                            //.col-md-6
+                            //    input#fax.input-sm.form-control(type='text' name='fax' value='{{ designer.profile.fax }}')
+                            .col-md-2
+                                input#firstFaxNumber.input-sm.form-control(type='text' name='firstFaxNumber' value='{{ designer.profile.firstFaxNumber }}')
+                            .col-md-2
+                                input#meddleFaxNumber.input-sm.form-control(type='text' name='meddleFaxNumber' value='{{ designer.profile.meddleFaxNumber }}')
+                            .col-md-2
+                                input#lastFaxNumber.input-sm.form-control(type='text' name='lastFaxNumber' value='{{ designer.profile.lastFaxNumber }}')
+
+                        if businessType
+                            .form-group
+                                label.col-md-1.control-label 사업자등록증
+                                .col-md-6
+                                    input#businessLicenseFileName.input-sm.form-control(type='text' readonly='true' name='businessLicenseFileName' value='{{ designer.profile.businessLicenseFileName }}')
+                                .col-md-2
+                                    label.btn.btn-primary.btn-sm.col-md-offset-4(title='Upload image file', for='businessLicenseFile')
+                                        input#businessLicenseFile.hide(type='file', name='file')
+                                        | 파일 업로드
+                                    //input#businessLicenseFile(type='file', name='file')
+                        .form-group
+                            label.col-md-1.control-label 은행명
+                            .col-md-6
+                                input#bankName.input-sm.form-control(type='text' name='bankName' value='{{ designer.profile.bankName }}')
+                        .form-group
+                            label.col-md-1.control-label 예금주명
+                            .col-md-6
+                                input#accountName.input-sm.form-control(type='text' name='accountName' value='{{ designer.profile.accountName }}')
+                        .form-group
+                            label.col-md-1.control-label 계좌번호
+                            .col-md-6
+                                input#accountNumber.input-sm.form-control(type='text' name='accountNumber' value='{{ designer.profile.accountNumber }}')
+                        .form-group
+                            label.col-md-1.control-label 통장사본
+                            .col-md-6
+                                input#bankbookImageFileName.input-sm.form-control(type='text' readonly='true' name='bankbookImageFileName' value='{{ designer.profile.bankbookImageFileName }}')
+                            .col-md-2
+                                label.btn.btn-primary.btn-sm.col-md-offset-4(title='Upload image file', for='bankbookImageUrl')
+                                    input#bankbookImageUrl.hide(type='file', name='file')
+                                    | 파일 업로드
+                        .form-group
+                            label.col-md-1.control-label 경력
+                            .col-md-2
+                                select#careerYear.form-control.input-sm(name='careerYear')
+                                    option(value='-1') 년
+                                    each careerDate('year')
+                                        option {{ this }}
+                            .col-md-2
+                                select#careerMonth.form-control.input-sm(name='careerMonth')
+                                    option(value='-1') 개월
+                                    each careerDate('month')
+                                        option {{ this }}
+                        .hr-line-dashed
+                        .form-group(style='margin: 0 auto;')
+                            .col-md-2.col-md-offset-10.text-right
+                                button#submit-button.btn.btn-md.btn-block.btn-primary(type="button")
+                                    | 저장
+
+
+

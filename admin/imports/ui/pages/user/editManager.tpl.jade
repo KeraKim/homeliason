@@ -1,0 +1,37 @@
++pageHeading title='담당자 관리' category='프로필 관리'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-content
+                    form.form-horizontal#manager-form(name='form')
+                        .form-group
+                            label.col-md-1.control-label 이름
+                            .col-md-10
+                                input#userName.input-sm.form-control(type='text' name='userName' value='{{ designer.profile.bankName }}')
+                        .form-group
+                            label.col-md-1.control-label 이메일
+                            .col-md-10
+                                input#email.input-sm.form-control(type='text' name='email' value='{{ designer.profile.accountName }}')
+                        .form-group
+                            label.col-md-1.control-label 비밀번호
+                            .col-md-10
+                                input#password.input-sm.form-control(type='password' name='password' value='{{ designer.profile.accountNumber }}')
+                        .form-group
+                            label.col-md-1.control-label 휴대전화
+                            .col-md-3
+                                input#firstMobileNumber.input-sm.form-control(type='text' name='firstMobileNumber' value='{{ designer.profile.accountNumber }}' maxlength='3')
+                            .col-md-3
+                                input#meddleMobileNumber.input-sm.form-control(type='text' name='meddleMobileNumber' value='{{ designer.profile.accountNumber }}' maxlength='4')
+                            .col-md-3
+                                input#lastMobileNumber.input-sm.form-control(type='text' name='lastMobileNumber' value='{{ designer.profile.accountNumber }}' maxlength='4')
+
+
+                        .hr-line-dashed
+                        .form-group(style='margin: 0 auto;')
+                            .col-md-2.col-md-offset-10.text-right
+                                button#submit-button.btn.btn-md.btn-block.btn-primary(type="button")
+                                    | 저장
+
+
+

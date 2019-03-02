@@ -1,0 +1,33 @@
++header
+.main-container.events
+    section
+        .container
+            .row.mb64.mb-xs-32
+                each events
+                    .col-sm-6.eventItem.cursor-pointer
+                        .image-caption.cast-shadow.hover-caption.event-box(style='background-image:url("{{ this.imageUrl }}")')
+                            //img(alt='Captioned Image', src='{{ this.imageUrl }}')
+                            .caption
+                                p {{ this.title }}
+
+        //.modal-container
+        //    .foundry_modal(style='background-image : url("{{ event.imageUrl }}")')
+        //        h4 {{ event.title }}
+        //        hr
+        //        .appendDiv
+        //        a.btn.btn-lg(href='{{ event.linkUrl }}' target='_blank') 이벤트 참여하기
+
+
+        .modal-container
+            .foundry_modal.text-center.image-bg.overlay.fullscreen(style='background-image : url("{{ event.imageUrl }}"); background-repeat: no-repeat; background-size: cover; background-position: center;')
+                i.ti-close.popupClose-button
+                //.background-image-holder
+                //    img.background-image(style='width: 100%; height: 100%; display: block;' alt='Background', src='{{event.imageUrl}}')
+                h2.uppercase {{event.title}}
+                p.lead.mb48
+                   .appendDiv
+                a.btn.btn-lg(href='{{ event.linkUrl }}' target='_blank') 이벤트 참여하기
+                // end modal
+
+
+    +footer

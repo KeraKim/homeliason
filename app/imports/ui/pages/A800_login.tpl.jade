@@ -1,0 +1,33 @@
++header
+
+.main-container.login
+    section.cover.fullscreen.image-bg.overlay
+        .background-image-holder.pcShow.parallax2
+        .background-image-holder.pcHide(style='background:url("/img/background29.jpg")')
+        .container.v-align-transform
+            .row
+                .col-sm-6.col-sm-offset-3
+                    .feature.bordered.text-center(style='background-color : #ffffff')
+                        h4.uppercase(style='color : #000000') 로그인
+
+                        form.text-left#login-from
+                            div
+                                input#email(type='text', name='email', placeholder='이메일')
+                                .error-text
+                            div
+                                input#password(type='password', name='password', placeholder='비밀번호')
+                                .error-text
+                            .btn.btn-lg#loginButton(style='width: 100%') 로그인
+                            .btn.btn-lg#facebookButton(style='width: 100%') 페이스북으로 로그인
+                            //.btn.btn-lg#forgotPasswordButton(style='width: 100%') 비밀번호 찾기
+                //.col-md-4.col-md-offset-4.col-sm-8.col-sm-offset-2
+                //    .feature.bordered.text-center
+                //        h4.uppercase 로그인
+                //        form.text-left
+                //            input.mb0#email(type='text', placeholder='이메일')
+                //            input.mb0#password(type='password', placeholder='비밀번호')
+                //            .btn.btn-lg.btn-filled#loginButton(style='width: 100%') 로그인
+                //            .btn.btn-lg.btn-filled(style='width: 100%') 페이스북으로 로그인
+            // end of row
+        // end of container
+    +footer

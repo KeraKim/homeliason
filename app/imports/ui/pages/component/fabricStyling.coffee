@@ -1,0 +1,1 @@
+require './fabricStyling.tpl.jade'

@@ -1,0 +1,169 @@
++header
+.main-container.portfolio
+    section.page-title.page-title-4
+        .container
+            .row
+                .col-md-12
+                    .col-md-12
+                        h3.uppercase.mb0 {{ portfolio.title }}
+            // end of row
+        // end of container
+    section.bg-secondary.pt32
+        .container
+            .col-md-9
+
+                .portfolio-swiper
+                    .swiper-container.gallery-top
+                        .swiper-wrapper
+                            each portfolioImage
+                                //.swiper-slide(class="{{ createByHomeliason }}" style='background-image:url("{{this}}")')
+                                //    .test
+                                //        .waterMark
+                                .swiper-slide(class="{{ createByHomeliason }}")
+                                    img.swiper-image(src='{{this}}')
+                                    .image-cover
+                                        .waterMark
+
+                    .swiper-container.gallery-thumbs
+                        .swiper-wrapper
+                            each portfolioImage
+                                .swiper-slide(style='background-image:url("{{this}}")')
+
+                .col-sm-12.height80Box(style='transition: 0.3s;')
+                    .custom-btn.mt2.likes-btn(style='margin-right:17px; vertical-align: top;')
+                        img(src='{{ likeImage }}')
+                    .custom-btn.share-btn.mt2(style='margin-right:17px; vertical-align: top;')
+                        img(src='/img/share.png')
+                    .ssk-xs.ssk-group.james.share.detail
+                        a.ssk.ssk-facebook(href='')
+                            i.themify.ti-facebook
+                        a.ssk.ssk-twitter(href='')
+                            i.themify.ti-twitter
+                        a.ssk.ssk-google-plus(href='')
+                            i.themify.ti-google
+                    .btn.btn-sm.btn-rounded#portfolioQna-btn(style='margin-bottom: 10px; border-width: 0px; background-color: #ececec; color: #4a4a4a; padding: 2px 35px; font-size: 14px; font-weight: normal;') 문의하기
+
+                //hr
+                //.col-sm-12
+                //    p {{{ portfolio.detailInfo }}}
+                //hr
+                //each reviews
+                //    .col-sm-12.mb16(style='padding: 0px')
+                //        .col-sm-3
+                //            //.rateYo.inline-block.mini-rateYo
+                //            .starBox
+                //                div(class='starImageWrap starLeftImageWrap num1 {{starCSS 1 this.score }} ')
+                //                div(class='starImageWrap starRightImageWrap num2 {{starCSS 2 this.score}} ')
+                //                div(class='starImageWrap starLeftImageWrap num3 {{starCSS 3 this.score}} ')
+                //                div(class='starImageWrap starRightImageWrap num4 {{starCSS 4 this.score}} ')
+                //                div(class='starImageWrap starLeftImageWrap num5 {{starCSS 5 this.score}} ')
+                //                div(class='starImageWrap starRightImageWrap num6 {{starCSS 6 this.score}} ')
+                //                div(class='starImageWrap starLeftImageWrap num7 {{starCSS 7 this.score}} ')
+                //                div(class='starImageWrap starRightImageWrap num8 {{starCSS 8 this.score}} ')
+                //                div(class='starImageWrap starLeftImageWrap num9 {{starCSS 9 this.score}} ')
+                //                div(class='starImageWrap starRightImageWrap num10 {{starCSS 10 this.score}} ')
+                //            p.mb0(style='color : #cccccc') {{ dateFormat this.createdAt }}
+                //            p.inline-block.mb0(style='margin-right : 20px') {{ userName this.userId }}
+                //        .col-sm-9
+                //            p.mb0 {{ this.content }}
+
+                .col-sm-12
+                    .tabbed-content.text-tabs
+                        ul.tabs
+                            li.active(name='description')
+                                .tab-title
+                                    span 포트폴리오 소개
+                            li(name='review')
+                                .tab-title
+                                    span 상품에 대한 리뷰
+                        ul.content
+                            li.active(name='description')
+                                .tab-content
+                                    p
+                                        | {{{ portfolio.detailInfo }}}
+                            li(name='review')
+                                each  reviews
+                                    .tab-content
+                                        .col-sm-12.mb16(style='padding: 0px')
+                                            .col-sm-3
+                                                //.rateYo.inline-block.mini-rateYo
+                                                .starBox
+                                                    div(class='starImageWrap starLeftImageWrap num1 {{starCSS 1 this.score }} ')
+                                                    div(class='starImageWrap starRightImageWrap num2 {{starCSS 2 this.score}} ')
+                                                    div(class='starImageWrap starLeftImageWrap num3 {{starCSS 3 this.score}} ')
+                                                    div(class='starImageWrap starRightImageWrap num4 {{starCSS 4 this.score}} ')
+                                                    div(class='starImageWrap starLeftImageWrap num5 {{starCSS 5 this.score}} ')
+                                                    div(class='starImageWrap starRightImageWrap num6 {{starCSS 6 this.score}} ')
+                                                    div(class='starImageWrap starLeftImageWrap num7 {{starCSS 7 this.score}} ')
+                                                    div(class='starImageWrap starRightImageWrap num8 {{starCSS 8 this.score}} ')
+                                                    div(class='starImageWrap starLeftImageWrap num9 {{starCSS 9 this.score}} ')
+                                                    div(class='starImageWrap starRightImageWrap num10 {{starCSS 10 this.score}} ')
+                                                p.mb0(style='color : #cccccc') {{ dateFormat this.createdAt }}
+                                                p.mb0 {{ userName this.userId }}
+                                            .col-sm-9
+                                                p.mb0(style='color: #009964;') {{ productName this.productId }}
+                                                p.mb0 {{ this.content }}
+
+
+            .col-md-3.col-sm-12
+                .widget.widget-profile.cursor-pointer
+                    .user-image
+                        img(src='{{ designer.profile.designerSquareImageUrl }}')
+                    //h5.text-center.bold.mt16.mb16 {{ designer.profile.designerName }}
+                    h5.text-center.mt16.mb16 {{ designer.profile.designerName }}
+
+                    table.profile-table
+                        tr
+                            td.td1(colspan="2") {{ designer.profile.specialty }}
+                        tr
+                            td.text-left(style='height: 10px; padding-left : 8%;' colspan="2") 경력 : {{ designer.profile.careerYear }}년 {{ designer.profile.careerMonth }}개월
+                                span(style='margin : 0px 10px;') |
+                                if designer.profile.reviewScore
+                                    sapn 평점 : {{ designer.profile.reviewScore }}
+                                else
+                                    sapn 평점 : 0
+                        tr
+                            //td.td2(style='line-height: 18px !important;') 지역 :
+                            //td.text-left(style='line-height: 18px !important;') {{this.profile.sido}}
+                            td.text-left(style='line-height: 24px !important; padding-left : 8%;') 지역 : {{ designer.profile.activeArea }}
+                        //tr
+                        //    td(style='height: 34px;' colspan="2") 경력 : {{ designer.profile.careerYear }}년 {{ designer.profile.careerMonth }}개월 | 평점 :
+                        //        if designer.profile.reviewScore
+                        //            sapn {{ designer.profile.reviewScore }}
+                        //        else
+                        //            sapn 0
+                        //tr
+                        //    td.td2(style='line-height: 18px !important;') 지역 :
+                        //    td.text-left(style='line-height: 18px !important;') {{ designer.profile.activeArea }}
+
+                each products
+                    .widget.text-center(style='box-shadow: 0 0.5px 4px 0 #dfdfdf; background-color: #ffffff; border-radius: 8px; padding: 10px;')
+                        .btn.fixd-btn.product-btn(style='border-radius: 8px; background-color: #009964; color: #ffffff; font-size: 18px; font-weight: normal; padding: 0px; width: 100%; margin-bottom: 10px;') {{ this.title }}
+                        p.text-left(style='color: #4a4a4a; font-size: 14px; margin-bottom: 13px;') {{ this.simpleInfo }}
+                        div.text-right(style='font-size: 18px; color: #4a4a4a')
+                            i.themity.ti-credit-card(style='font-size: 22px; color: #000000;')
+                            span(style='margin-left: 5px;') {{ comma this.price }}원
+
+                //.widget.text-center
+                //    .btn.fixd-btn 온라인 홈스타일링 : 100,000원
+                //    p.text-left 상품에 대한 설명이 간단하게 블라블라 적히는 공간입니다. 이메일과 문자 카톡을 통해 상담하며, 방문을 원하시는 경우에는 실측 컨설팅을 별도로 결제 후 신청해주시면 감사하겠습니다.
+
+    +footer
+
+.modal-container.text-center
+    .foundry_modal.portfolioQnaPopup
+        i.ti-close.popupClose-button
+        form.portfolioQna-form
+            h4 문의하기
+            hr
+            div
+                input.mb0.qna-title(type='text' name='title' placeholder='제목을 입력해주세요')
+                .error-text.text-left
+            div
+                textarea.mb0.qna-content(placeholder='문의 내용을 입력해주세요' name='content')
+                .error-text.text-left
+            hr
+            div
+                input.mb0.qna-email(type='text' name='email' placeholder='답변받을 이메일 주소를 입력해주세요.' value='{{ currentUser.emails.[0].address }}')
+                .error-text.text-left
+            .btn.btn-lg.btn-filled.mb0.portfolioQnsSubmit-btn 작성완료

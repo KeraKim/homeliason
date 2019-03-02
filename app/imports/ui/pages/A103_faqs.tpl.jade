@@ -1,0 +1,23 @@
++header
+.main-container.faq
+    section(style='min-height: 76vh;')
+        .container
+            .row
+                .col-sm-12.text-center
+                    h4.uppercase.mb80 자주 묻는 질문
+            // end of row
+            .row
+                .col-sm-10.col-sm-offset-1
+                    ul.accordion.accordion-2
+                        each faqs
+                            li
+                                .title
+                                    h5.inline-block.mb0(style='margin-left: 10px;') {{ this.title }}
+                                .content
+                                    p(style='padding-top:0px; margin-bottom: 20px;')
+                                        | {{{ this.content }}}
+
+                    // end of accordion
+            // end of row
+        // end of container
+    +footer

@@ -1,0 +1,20 @@
+{
+  "name": "app",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "babel-runtime": "6.18.0",
+    "desandro-get-style-property": "^1.0.4",
+    "desandro-matches-selector": "^2.0.2",
+    "doc-ready": "^1.0.4",
+    "eventie": "^1.0.6",
+    "get-size": "^2.0.2",
+    "jquery": "^3.2.1",
+    "mandrill-api": "^1.0.45",
+    "meteor-node-stubs": "~0.2.0",
+    "outlayer": "^2.1.1",
+    "wolfy87-eventemitter": "^5.1.0"
+  }
+}

@@ -1,0 +1,44 @@
+.james.checkbox {
+  padding-left: 20px;
+  margin: 0px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.james.checkbox > label {
+  font-size: 14px;
+  color: #4a4a4a;
+  cursor: pointer;
+}
+
+.james.checkbox:after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  background-image: url('/img/checkbox.png');
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  cursor: pointer;
+}
+
+.james.checkbox:before {
+  content: '';
+  width: 24px;
+  height: 24px;
+  background-image: url('/img/checkbox_checked.png');
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  cursor: pointer;
+  display: none;
+  cursor: pointer;
+}
+
+.james.checkbox.checked:after {
+  display: none;
+}
+
+.james.checkbox.checked:before {
+  display: block;
+}

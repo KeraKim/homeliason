@@ -1,0 +1,1 @@
+require './A104_qna.tpl.jade'

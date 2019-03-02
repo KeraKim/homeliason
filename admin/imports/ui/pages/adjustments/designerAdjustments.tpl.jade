@@ -1,0 +1,90 @@
++pageHeading title='정산내역' category='정산 관리'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-title.text-right
+                    //h5 총 {{totalCount}}건 (노출 {{totalVisibleCount}}건)
+                .ibox-content
+                    //+searchForm
+                    .hr-line-dashed
+                    .table-responsive
+                        table.table.table-bordered
+                            thead
+                                tr
+                                    th.text-center 상태
+                                    th.text-center 실제 정산일
+                                    th.text-center 정산 기준일
+                                    th.text-center 해당 정산주기
+                                    th.text-center 총 정산금
+                                    th.text-center 총 판매가격
+                                    th.text-center 은행
+                                    th.text-center 계좌번호
+                                    th.text-center 판매상품
+
+
+                            tbody
+                                each adjustments
+                                    tr
+                                        th.text-center {{ isComplete this.isComplete }}
+                                        th.text-center {{ dateFormat this.completedAt }}
+                                        th.text-center {{ dateFormat this.adjustmentAt }}
+                                        th.text-center {{ dateFormat this.startsAt }} ~ {{ dateFormat this.endsAt }}
+                                        th.text-center {{ priceComma this.totalAdjustmentPrice }}
+                                        th.text-center {{ priceComma this.totalPrice }}
+                                        th.text-center {{ designer this.designerId "bankName" }}
+                                        th.text-center {{ designer this.designerId "accountNumber" }}
+                                        th.text-center.saleList-button.clickLine [보기]
+
+                                        //td.text-center
+                                        //    a(href="{{pathFor 'noticeEdit' id=this._id}}")
+                                        //        button.btn.btn-xs.btn-block.btn-default(type="button")
+                                        //            | 수정
+
+
+                            tfoot
+                                tr
+                                    td.footable-visible(colspan='12')
+                                        .pull-right
+                                            button#btnExcel.btn.btn-xs.btn-default(type="button")
+                                                i.fa.fa-file-excel-o
+                                                | 엑셀
+                                tr
+                                    td(colspan='12')
+                                        ul.pagination.pull-right
+                                            +pagination pageTotalCount=pageTotalCount
+
+//.saleListModal.modal.inmodal(tabindex='-1', role='dialog', aria-hidden='true', style='display: none;')
+//    .modal-dialog.modal-lg
+//        .modal-content.animated.fadeIn
+//            .modal-header
+//                button.close(type='button', data-dismiss='modal')
+//                    span(aria-hidden='true') ×
+//                    span.sr-only Close
+//                h4.modal-title 정산 내용
+//
+//            .modal-body
+//                table.table.table-bordered
+//                    thead
+//                        tr
+//                            th 생성일
+//                            th 상품 이름
+//                            th 포트폴리오 이름
+//                            th 가격
+//                            th 판매 수
+//                            th 총 판매액
+//                            th 수수료율
+//                    tbody
+//                        each salesProducts
+//                            tr
+//                                th {{ dateFormat this.[0].createdAt}}
+//                                th {{ productName this.[0].productId }}
+//                                th {{ portfolioName this.[0].portfolioId }}
+//                                th {{ this.[0].price }}
+//                                th {{ this.length }}
+//                                th {{ productTotalPrice this.[0].price this.length }}
+//                                th {{ this.[0].commission }}%
+//                    tfoot
+//                        p 합계 : {{ totalPrice "totalPrice" }}
+//                        p 세금 : {{ totalPrice "totalTax" }}
+//                        p 최종 정산금 : {{ totalPrice "totalAdjustment" }}

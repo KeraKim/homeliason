@@ -1,0 +1,19 @@
++header
+.main-container.notice
+    section(style='min-height: 76vh;')
+        .container
+            .row
+                .col-sm-12.text-center
+                    h4.uppercase.mb80 공지사항
+            // end of row
+            .row
+                ul.accordion.accordion-1
+                    each notices
+                        li
+                            //TODO 황성화 시키고 싶으면 title.active
+                            .title
+                                span(style='font-size : 14px;') {{ this.title }}
+                            .content
+                                p
+                                    | {{{ this.content }}}
+    +footer

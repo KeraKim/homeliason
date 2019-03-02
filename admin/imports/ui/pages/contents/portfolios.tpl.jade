@@ -1,0 +1,98 @@
++pageHeading title='포트폴리오' category='콘텐츠 관리'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-title.text-right
+                    //h5 총 {{totalCount}}건
+                .ibox-content
+                    +searchForm
+                    form.form-horizontal
+                        .form-group(style='margin: 0 auto;')
+                            label.col-md-1.control-label 노출상태
+                            .col-md-4
+                                .btn-group(style='height: 40px; line-height: 38px;')
+                                        input#visible(style='vertical-align: top; margin-top: 12px;' type='checkbox', name='visible' checked)
+                                        |  노출
+
+                                        input#nonVisible(style='vertical-align: top; margin-top: 12px;' type='checkbox', name='nonVisible' checked)
+                                        |  숨김
+                    .hr-line-dashed
+                    .table-responsive
+                        table.table.table-bordered
+                            thead
+                                tr
+                                    th.text-center
+                                        input.visible-check-all(type='checkbox', name='checkAll')
+                                    th.text-center 노출상태
+                                    th.text-center 생성일
+                                    //th.text-center 포트폴리오 코드
+                                    th.text-center 포트폴리오
+                                    th.text-center 작업일
+                                    if currentUser.profile.isAdmin
+                                        th.text-center 디자이너
+                                    th.text-center 이미지 수
+                                    th.text-center 상품 수
+                                    th.text-center 리뷰 수
+                                    th.text-center 찜된 수
+                            tbody
+                                each portfolios
+                                    tr
+                                        td.text-center
+                                            input.visible-check(type='checkbox' name='input[]')
+                                        td.text-center {{ status this.isVisible }}
+                                        td.text-center {{ dateFormat this.updatedAt }}
+                                        //td.text-center
+                                        unless  currentUser.profile.isAdmin
+                                            td.text-center.portfolioTitle.clickLine {{ this.title }}
+                                        if currentUser.profile.isAdmin
+                                            td.text-center.portfolioTitle.clickLine {{ this.title }}
+                                        td.text-center {{ this.workedYear }} {{ workedMonthFormat this.workedMonth }}
+                                        if currentUser.profile.isAdmin
+                                            td.text-center {{ designerName this.designerId }}
+                                        td.text-center {{ arrayCount this.imageUrl }}
+                                        td.text-center {{ productCount this._id }}
+                                        td.text-center {{ reviewCount this._id }}
+                                        td.text-center.likeCount.clickLine {{ arrayCount this.likeUserIds }}
+
+                            tfoot
+                                tr
+                                    td.footable-visible(colspan='10')
+                                        button#btnVisible.btn.btn-xs.btn-success(type="button")
+                                            i.fa
+                                            | 노출하기
+                                        button#btnNovisible.btn.btn-xs.btn-default(type="button")
+                                            i.fa
+                                            | 숨기기
+                                        button#btnRemove.btn.btn-xs.btn-danger(type="button")
+                                            i.fa.fa-trash-o
+                                            | 삭제
+                                        .pull-right
+                                            button#btnExcel.btn.btn-xs.btn-default(type="button")
+                                                i.fa.fa-file-excel-o
+                                                | 엑셀
+                                        unless  currentUser.profile.isAdmin
+                                            button#btnAddPortfolio.btn.btn-xs.btn-success.pull-right(type="button")
+                                                i.fa
+                                                | 포트폴리오 추가
+                                tr
+                                    td(colspan='10')
+                                        ul.pagination.pull-right
+                                            +pagination pageTotalCount=pageTotalCount
+
+.likersModal.modal.inmodal(tabindex='-1', role='dialog', aria-hidden='true', style='display: none;')
+    .modal-dialog.modal-lg
+        .modal-content.animated.fadeIn
+            .modal-header
+                button.close(type='button', data-dismiss='modal')
+                    span(aria-hidden='true') ×
+                    span.sr-only Close
+                h4.modal-title 찜한 사용자
+
+            .modal-body
+                table.table.table-bordered
+                    tbody
+                        each portfolioLikeUsers
+                            tr
+                                th {{this.profile.userName}}
+                                th {{this.emails.[0].address}}

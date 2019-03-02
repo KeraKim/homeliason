@@ -1,0 +1,80 @@
++pageHeading title='태그 관리' category='마케팅'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-title.text-right
+                    //h5 총 {{totalCount}}건
+                .ibox-content
+                    +searchForm
+                    form.form-horizontal
+                        .form-group(style='margin: 0 auto;')
+                            label.col-md-1.control-label 노출상태
+                            .col-md-4
+                                .btn-group(style='height: 40px; line-height: 38px;')
+                                    input#visible(style='vertical-align: top; margin-top: 12px;' type='checkbox', name='visible' checked)
+                                    |  노출
+
+                                    input#nonVisible(style='vertical-align: top; margin-top: 12px;' type='checkbox', name='nonVisible' checked)
+                                    |  숨김
+                            .col-md-4
+                                .btn-group
+                                    input(type='checkbox', name='recommend' checked)
+                                    |  추천
+
+                                    input(type='checkbox', name='nonRecommend' checked)
+                                    |  추천 아님
+                    .hr-line-dashed
+                    .table-responsive
+                        table.table.table-bordered
+                            thead
+                                tr
+                                    th.text-center
+                                        input.visible-check-all(type='checkbox', name='checkAll')
+                                    th.text-center 노출상태
+                                    th.text-center 추천여부
+                                    th.text-center 태그명
+                                    th.text-center 등록개수
+                                    th.text-center 클릭수
+                                    th.text-center 평균점수
+                            tbody
+                                each tags
+                                    tr
+                                        td.text-center
+                                            input.visible-check(type='checkbox' name='input[]')
+                                        td.text-center {{ status this.isVisible }}
+                                        th.text-center {{ status this.isRecommend }}
+                                        td.text-center {{ this.tagName }}
+                                        td.text-center {{ this.registerCount }}
+                                        td.text-center {{ this.clickCount }}
+                                        td.text-center {{ avgScore this }}
+
+                            tfoot
+                                tr
+                                    td.footable-visible(colspan='10')
+                                        button#btnVisible.btn.btn-xs.btn-success(type="button")
+                                            i.fa
+                                            | 노출하기
+                                        button#btnNonVisible.btn.btn-xs.btn-default(type="button")
+                                            i.fa
+                                            | 숨기기
+                                        button#btnRecommend.btn.btn-xs.btn-success(type="button")
+                                            i.fa
+                                            | 추천하기
+                                        button#btnNonRecommend.btn.btn-xs.btn-default(type="button")
+                                            i.fa
+                                            | 추천해제
+                                        button#btnRemove.btn.btn-xs.btn-danger(type="button")
+                                            i.fa.fa-trash-o
+                                            | 삭제
+                                        .pull-right
+                                            button#btnExcel.btn.btn-xs.btn-default(type="button")
+                                                i.fa.fa-file-excel-o
+                                                | 엑셀
+                                tr
+                                    td(colspan='10')
+                                        ul.pagination.pull-right
+                                            +pagination pageTotalCount=pageTotalCount
+
+
+

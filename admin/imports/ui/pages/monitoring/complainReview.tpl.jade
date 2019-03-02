@@ -1,0 +1,43 @@
++pageHeading title='리뷰 관리' category='모니터링'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-content
+                    h3.col-md-offset-1 불합리하다고 생각되는 리뷰나 평점이 있으면 사이트 관리자에게 문의해주세요. 검토 후 조치사항에 대해 답변해드리겠습니다.
+                    form.form-horizontal#complaninReview-form(name='form')
+                        .form-group
+                            label.col-md-1.control-label 제목
+                            .col-md-10
+                                input#title.input-sm.form-control(type='text' name='title' placeholder='제목')
+                        .form-group
+                            label.col-md-1.control-label 포트폴리오
+                            .col-md-3
+                                select#portfolio-select.form-control.input-sm(name='portfolio')
+                                    option(value='-1') 포트폴리오 선택
+                                    each portfolios
+                                        option(value='{{ this._id }}') {{ this.title }}
+                        .form-group
+                            label.col-md-1.control-label 상품
+                            .col-md-3
+                                select#product-select.form-control.input-sm(name='product')
+                                    option(value='-1') 상품 선택
+                                    each products
+                                        option(value='{{ this._id }}') {{ this.title }}
+                        .form-group
+                            label.col-md-1.control-label 리뷰 작성자
+                            .col-md-10
+                                input#writer.input-sm.form-control(type='text' name='writer' placeholder='리뷰 작성자 이름')
+                        .form-group
+                            label.col-md-1.control-label 설명
+                            .col-md-10
+                                textarea#content(name='content' placeholder='설명').form-control
+
+                        .hr-line-dashed
+                        .form-group(style='margin: 0 auto;')
+                            .col-md-2.col-md-offset-10.text-right
+                                button#submit-button.btn.btn-md.btn-block.btn-primary(type="button")
+                                    | 저장
+
+
+

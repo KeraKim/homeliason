@@ -1,0 +1,20 @@
++pageHeading title='일정관리' category='콘텐츠 관리'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-content
+                    .hr-line-dashed
+                    .table-responsive
+                        .holiday-box(style='background-color : #f3f3f4; display: inline-block; padding: 10px; margin-right: 30px;')
+                            h5 하단에 있는 '예약불가' 버튼을 선택 후
+                            h5 달력으로 드래그 하세요. '휴일'로 정해진 날짜는
+                            h5 고객들이 예약할 수 없는 날로 설정됩니다.
+                            h5 (휴일을 다시 클릭하시면 삭제됩니다)
+                            #holidayDrager(style='width:100px; height:20px; background-color : orange; border-radius: 5px; color: white; text-align: center; cursor : pointer') 예약불가
+
+                        .ibox.float-e-margins(style='display: inline-block; width: 75%; vertical-align: top;')
+                            //+fullcalendar events=events
+                            //+fullcalendar id='fullcalendar'
+                            #fullcalendar
+                            //+fullcalendar options

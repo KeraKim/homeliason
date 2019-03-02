@@ -1,0 +1,12 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-12
+    h2 {{title}}
+    ol.breadcrumb
+      //li
+        a(href='{{pathFor route=home}}') Home
+      if category
+        li
+          a {{category}}
+      li.active
+        strong {{title}}
+

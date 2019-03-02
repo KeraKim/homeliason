@@ -1,0 +1,124 @@
++header
+.main-container.portfolios
+    section.page-title.page-title-4
+        .container
+            .row
+                .col-md-12
+                    h3.uppercase.mb0 찜한 리스트
+                        //span(style='color : #00b86f') #모던
+                        span(style='color : #f4b58d') {{ searchText }}
+                        span(style='color : #00b86f') {{ tag }}
+            // end of row
+        // end of container
+    section.bg-secondary.pt32(style='min-height: 650px;')
+        .container
+            .col-md-9
+                .row.masonry-loader
+                    .col-sm-12.text-center
+                        .spinner
+                .row.masonry.masonryFlyIn.mb40
+                    .col-sm-6.post-snippet.masonry-item.col-xs-12(style='height : 42px')
+                        .select-option.border-ccc
+                            i.ti-angle-down
+                            select#filter-select
+                                option 최신순
+                                option 조회순
+                                option 별점순
+
+                    //.col-sm-6.post-snippet.masonry-item.col-xs-12
+                    //    input.mb0.search-icon.border-ccc.search-input(type='text', placeholder='디자이너, 스타일, 지역, 키워드 등으로 검색해보세요.')
+                    .col-sm-6.post-snippet.masonry-item.col-xs-12
+                        .mobileHide.mobileHide-w990
+                            input.mb0.search-icon.border-ccc.search-input.pc-search-input(type='text', placeholder='디자이너, 스타일, 지역, 키워드 등으로 검색해보세요.')
+                        .pcHide
+                            input.mb0.search-icon.border-ccc.search-input.mobile-search-input(type='text', placeholder='스타일 등 키워드로 검색해보세요.')
+
+
+                    each  portfolios
+                        .col-sm-6.post-snippet.masonry-item.portfolio
+                            a
+                                img.portfolio-item.cursor-pointer(alt='Post Image', src='{{ this.imageUrl.[0] }}')
+                            .inner
+                                a
+                                    img.user-image(src='{{ designer.profile.designerSquareImageUrl }}')
+                                    h5.mb0.titleText(style='vertical-align: -webkit-baseline-middle; margin-top: 4px; line-height: 20px;') {{ this.title }}
+                                    span.inline-block.mb16(style='margin-top:6px') {{ this.workedYear }}년 {{ month this.workedMonth }} {{ day this.workedDay }} | {{ this.sido }} {{ this.gugun }} | {{ productCount this.productCount }}
+                                hr
+                                p
+                                    | {{ this.simpleInfo }}
+                                a.btn.btn-sm.btn-rounded.portfolio-item.cursor-pointer 자세히 보기
+                                ul.tags.pull-right
+                                    li
+                                        .custom-btn.likes-btn(style='margin-right:15px')
+                                            //img(src='/img/like-disable.png')
+                                            img(src='{{ likeImage this.likeUserIds }}')
+                                    li
+                                        .custom-btn.share-btn
+                                            img(src='/img/share.png')
+                                .ssk-xs.ssk-group.james.share
+                                    a.ssk.ssk-facebook.share-btn(href='' data-image="{{ this.imageUrl.[0] }}" data-text="{{ this.title }}" data-title="{{ this.title }}" data-url="http://52.78.179.150/share/contentManagement/designers/{{this.designerId}}/portfolios/{{this._id}}")
+                                        i.themify.ti-facebook
+                                    a.ssk.ssk-twitter.share-btn(href='' data-image="{{ this.imageUrl.[0] }}" data-text="{{ this.title }}" data-url="http://52.78.179.150/share/contentManagement/designers/{{this.designerId}}/portfolios/{{this._id}}")
+                                        i.themify.ti-twitter
+                                    a.ssk.ssk-google-plus.share-btn(href='' data-image="{{ this.imageUrl.[0] }}" data-text="{{ this.title }}" data-url="http://52.78.179.150/share/contentManagement/designers/{{this.designerId}}/portfolios/{{this._id}}")
+                                        i.themify.ti-google
+
+                // end of row
+                .pcHide
+                    .row.more-btn-box
+                        .col-md-4
+                            hr.middle-hr.mobileHide
+                        .col-md-4.text-center
+                            .btn.btn-lg.btn-rounded.btn-4.more-btn 더 보 기
+                        .col-md-4
+                            hr.middle-hr.mobileHide
+
+            .col-md-3.hidden-sm
+                .widget
+                    h6.title(style='padding-top: 5px;') 원하는 홈스타일링을 찾아보세요 !
+                    hr
+                    #myCanvasContainer
+                        canvas#myCanvas(width="700" height="640")
+                    #tags(style="font-size: 300%; visibility: hidden;")
+                        ul
+                            each tags
+                                li
+                                    a.cloudTag(href='#' style="font-size: {{ tagSize this._id}}ex") {{this.tagName}}
+                // end of widget
+                .widget
+                    h6.title 상담 가능한 날짜
+                    hr
+                    .datePicker
+                .widget
+                    h6.title 홈리에종이 추천하는 Tag
+                    hr
+                    ul.link-list.recent-posts
+                        each recommendTag
+                            li
+                                span.date.cursor-pointer.cloudTag {{ this.tagName }}
+                .widget
+                    h6.title 사람들이 많이 찾는 Tag
+                    hr
+                    ul.link-list.recent-posts
+                        each popularTags
+                            li
+                                span.date.cursor-pointer.cloudTag {{ this.tagName }}
+                .widget
+                    h6.title 평점이 높은 Tag
+                    hr
+                    ul.link-list.recent-posts
+                        each highScoreTags
+                            li
+                                span.date.cursor-pointer.cloudTag {{ this.tagName }}
+
+            .mobileHide-w990
+                .col-md-9
+                    .row.more-btn-box
+                        .col-md-4
+                            hr.middle-hr.mobileHide
+                        .col-md-4.text-center
+                            .btn.btn-lg.btn-rounded.btn-4.more-btn 더 보 기
+                        .col-md-4
+                            hr.middle-hr.mobileHide
+
+    +footer

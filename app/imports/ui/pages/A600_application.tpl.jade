@@ -1,0 +1,239 @@
++header
+.main-container.application
+    section.page-title.page-title-4
+        .container
+            .row
+                .col-md-12
+                    .col-md-12
+                        h3.uppercase.mb0 디자이너 신청
+
+    section.applicationSection
+        .container
+            .row
+                .col-md-8.col-md-offset-2
+                    form#application-form.customer-details.mb80.mb-xs-40
+                        .input-with-label.col-sm-3.text-left
+                            h5.mb0 사업자 구분
+                        .input-with-label.col-sm-4.text-left.businessType
+                                .radio-option.checked
+                                    .inner
+                                    input(type='radio', name='businessType', value='법인 사업자(일반과세)' checked='checked')
+                                span(style='vertical-align: top; margin-left: 5px;') 법인 사업자(일반과세)
+                        .input-with-label.col-sm-4.text-left.businessType
+                                .radio-option
+                                    .inner
+                                    input(type='radio', name='businessType', value='개인 사업자(일반과세)')
+                                span(style='vertical-align: top; margin-left: 5px;') 개인 사업자(일반과세)
+                        .input-with-label.col-sm-3.text-left
+                        .input-with-label.col-sm-4.text-left.businessType
+                                .radio-option
+                                    .inner
+                                    input(type='radio', name='businessType', value='프리랜서(사업자 없음)')
+                                span(style='vertical-align: top; margin-left: 5px;') 프리랜서(사업자 없음)
+                        .input-with-label.col-sm-4.text-left.businessType
+                                .radio-option
+                                    .inner
+                                    input(type='radio', name='businessType', value='개인 사업자(간이과세)')
+                                span(style='vertical-align: top; margin-left: 5px;') 개인 사업자(간이과세)
+                        if businessType
+                            .input-with-label.col-sm-12.text-left
+                                h5.mb0 회사이름
+                                input#companyName.mb0(type='text', name='companyName' placeholder='회사 이름을 입력해주세요.')
+                                .error-text
+                            .input-with-label.col-sm-6.text-left
+                                h5.mb0 사업자 등록번호
+                                input#businessLicenseNumber.mb0(type='text' name='businessLicenseNumber' placeholder='숫자만 입력해주세요.')
+                                .error-text
+                        .input-with-label.col-sm-6.text-left
+                            h5.mb0 대표자 이름
+                            input#ceoName.mb0(type='text' name='ceoName' placeholder='실명을 입력해주세요.')
+                            .error-text
+                        .input-with-label.col-sm-12.text-left
+                            h5.mb0 개업일
+                            .select-option.col-sm-4.grid1.mb0(style='height : 74px')
+                                i.ti-angle-down
+                                select#foundedYear.foundedAt(name='foundedYear')
+                                    option(value='-1') 년
+                                    each foundedDate('year')
+                                        option(value='{{ this }}') {{ this }}
+                                .error-text
+                            .select-option.col-sm-4.grid2.mb0(style='height : 74px')
+                                i.ti-angle-down
+                                select#foundedMonth.selectMonth.foundedAt(name='foundedMonth')
+                                    option(value='-1') 월
+                                    each foundedDate('month')
+                                        option {{ this }}
+                                .error-text
+                            .select-option.col-sm-4.grid3.mb0(style='height : 74px')
+                                i.ti-angle-down
+                                select#foundedDay.foundedAt(name='foundedDay')
+                                    option(value='-1') 일
+                                    each foundedDate2
+                                        option {{ this }}
+                                .error-text
+                        //.input-with-label.col-sm-12.text-left
+                        //    .input-with-label.col-sm-4.text-left.grid1
+                        //        h5.mb0 주소
+                        //        input(type='text' placeholder='우편번호 찾기.' readonly='true')
+                        //    .input-with-label.col-sm-4.text-left
+                        //        .btn.btn-lg.btn-rounded.button-margin 우편번호 찾기
+                        //.input-with-label.col-sm-6.text-left
+                        //    input(type='text' placeholder='자동입력되는 부분입니다.')
+                        //.input-with-label.col-sm-6.text-left
+                        //    input(type='text' placeholder='자세한 주소를 입력해주세요.')
+
+                        //.input-with-label.col-sm-12.text-left
+                        //    h5.mb0 주소
+                        //    input#address.mb0(type='text', name='address' placeholder='주소를 입력해주세요')
+                        //    .error-text
+
+
+                        .input-with-label.col-sm-6.text-left
+                            h5.mb0 기본 주소
+                            input#sido.mb0(type='text' name='sido' placeholder='주소를 입력해 주세요.' readonly='true')
+                            .error-text
+                        .input-with-label.col-sm-6.text-left
+                            h5.mb0 상세 주소
+                            input#eubmyeondong.mb0(type='text' name='eubmyeondong' placeholder='상세주소를 입력해 주세요.')
+                            .error-text
+
+                        //.input-with-label.col-sm-12.text-left
+                        //    h5.mb0 주소
+                        //    .select-option.col-sm-4.grid1.mb0(style='height : 74px')
+                        //        input#sido.mb0.cursor-pointer(type='text' name='sido' readonly='true')
+                        //        .error-text
+                        //    .select-option.col-sm-4.grid2.mb0(style='height : 74px')
+                        //        input#gugun.mb0.cursor-pointer(type='text' name='gugun' readonly='true')
+                        //        .error-text
+                        //    .select-option.col-sm-4.grid3.mb0(style='height : 74px')
+                        //        input#eubmyeondong.mb0(type='text' name='eubmyeondong')
+                        //        .error-text
+
+
+                            //.select-option.col-sm-4.grid1.mb0(style='height : 74px')
+                            //    i.ti-angle-down
+                            //    select#sido(name='sido')
+                            //    .error-text
+                            //.select-option.col-sm-4.grid2.mb0(style='height : 74px')
+                            //    i.ti-angle-down
+                            //    select#gugun(name='gugun')
+                            //    .error-text
+                            //.select-option.col-sm-4.grid3.mb0(style='height : 74px')
+                            //    input#eubmyeondong.mb0(type='text' name='eubmyeondong')
+                            //    .error-text
+
+                        .input-with-label.col-sm-12.text-left
+                            h5.mb0 전화번호 (선택)
+                            .select-option.col-sm-4.grid1.mb0(style='height : 74px')
+                                i.ti-angle-down
+                                select#phoneInput1
+                                    option 02
+                                    option 051
+                                    option 053
+                                    option 032
+                                    option 062
+                                    option 042
+                                    option 052
+                                    option 044
+                                    option 031
+                                    option 033
+                                    option 043
+                                    option 041
+                                    option 063
+                                    option 061
+                                    option 054
+                                    option 055
+                                    option 064
+                                    option 070
+                            .input-with-label.col-sm-4.text-left.grid2.mb0(style='height : 74px')
+                                input#phoneInput2.mb0(type='text' name='phoneInput2' maxlength='4')
+                                .error-text
+                            .input-with-label.col-sm-4.text-left.grid3.mb0(style='height : 74px')
+                                input#phoneInput3.mb0(type='text' name='phoneInput3' maxlength='4')
+                                .error-text
+                        .input-with-label.col-sm-12.text-left
+                            h5.mb0 휴대전화번호
+                            .select-option.col-sm-4.grid1.mb0(style='height : 74px')
+                                i.ti-angle-down
+                                select#mobileInput1
+                                    option 010
+                                    option 011
+                                    option 016
+                                    option 017
+                                    option 019
+                            .input-with-label.col-sm-4.text-left.grid2(style='height : 74px')
+                                input#mobileInput2.mb0(type='text' name='mobileInput2' maxlength='4')
+                                .error-text
+                            .input-with-label.col-sm-4.text-left.grid3(style='height : 74px')
+                                input#mobileInput3.mb0(type='text' name='mobileInput3' maxlength='4')
+                                .error-text
+                        .input-with-label.col-sm-12.text-left
+                            h5.mb0 이메일주소
+                            input#designerEmail.mb0(type='text', name='email' placeholder='메일 주소를 입력해주세요.')
+                            .error-text
+                        .input-with-label.col-sm-12.text-left
+                            h5.mb0 팩스 (선택)
+                            //input#fax.mb0(type='text', name='fax' placeholder='팩스 번호를 입력해주세요.')
+                            //.error-text
+                            .input-with-label.col-sm-4.text-left.grid1(style='height : 74px')
+                                input#fax1.mb0(type='text' name='fax1' maxlength='4')
+                                .error-text
+                            .input-with-label.col-sm-4.text-left.grid2(style='height : 74px')
+                                input#fax2.mb0(type='text' name='fax2' maxlength='4')
+                                .error-text
+                            .input-with-label.col-sm-4.text-left.grid3(style='height : 74px')
+                                input#fax3.mb0(type='text' name='fax3' maxlength='4')
+                                .error-text
+                        if businessType
+                            .input-with-label.col-sm-12.text-left
+                                .input-with-label.col-sm-8.text-left.grid4
+                                    h5.mb0 사업자 등록증
+                                    input#businessLicenseFileName.mb0(type='text' name='businessLicenseFileName' readonly='true' placeholder='사업자 등록증 문서가 들어갈 자리입니다.')
+                                    .error-text
+                                .input-with-label.col-sm-4.text-left
+                                    input#businessLicenseFile(type='file' style='display : none')
+                                    #licenseFileButton.btn.btn-lg.btn-rounded.button-margin 첨부하기
+                        .input-with-label.col-sm-12.text-left
+                            h5.mb0 은행명
+                            input#bankName.mb0(type='text', name='bankName' placeholder='은행명을 입력해주세요.')
+                            .error-text
+                        .input-with-label.col-sm-12.text-left
+                            h5.mb0 예금주명
+                            input#accountName.mb0(type='text', name='accountName' placeholder='예금주명을 입력해주세요.')
+                            .error-text
+                        .input-with-label.col-sm-12.text-left
+                            h5.mb0 계좌번호
+                            input#accountNumber.mb0(type='text', name='accountNumber' placeholder='계좌번호를 입력해주세요.')
+                            .error-text
+                        .input-with-label.col-sm-12.text-left
+                            .input-with-label.col-sm-8.text-left.grid4
+                                h5.mb0 통장 사본
+                                input#bankbookImageFileName.mb0(type='text' name='bankbookImageFileName' readonly='true' placeholder='통장 사본 이미지가 들어갈 자리입니다.')
+                                .error-text
+                            .input-with-label.col-sm-4.text-left
+                                input#bankbookImageUrl(type='file' accept='image/*' style='display : none')
+                                #bankbookImageButton.btn.btn-lg.btn-rounded.button-margin 첨부하기
+                        .input-with-label.col-sm-12.text-left
+                            h5.mb0 경력
+                            .select-option.col-sm-6.grid5.mb0(style='height : 74px')
+                                i.ti-angle-down
+                                select#careerYear(name='careerYear')
+                                    option(value='-1') 년
+                                    each careerDate('year')
+                                        option {{ this }}
+                                .error-text
+                            .select-option.col-sm-6.grid6.mb0(style='height : 74px')
+                                i.ti-angle-down
+                                select#careerMonth(name='careerMonth')
+                                    option(value='-1') 개 월
+                                    each careerDate('month')
+                                        option {{ this }}
+                                .error-text
+                        .col-sm-12.text-center.mt56
+                            p.mb0 홈리에종 파트너 등록을 위한 것으로, 기본 정보 변경 시 본사로 요청해 주셔야 합니다.
+                            |  경력 및 포트폴리오는 디자이너 정보변경 페이지에서 항상 수정하실 수 있습니다.
+
+                        .col-sm-12.text-center.mt88
+                            #submitButton.btn.btn-lg.btn-filled.btn-rounded 작성완료
+
+    +footer

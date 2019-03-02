@@ -1,0 +1,373 @@
++pageHeading title='판매내역' category='정산 관리'
+.wrapper.wrapper-content.animated.fadeInRight
+    .row
+        .col-lg-12
+            .ibox.float-e-margins
+                .ibox-title.text-right
+                    //h5 총 {{totalCount}}건 (노출 {{totalVisibleCount}}건)
+                .ibox-content
+                    +searchForm
+                    .hr-line-dashed
+                    .table-responsive
+                        table.table.table-bordered
+                            thead
+                                tr
+                                    th.text-center 판매일
+                                    th.text-center 시작일
+                                    th.text-center 종료일
+                                    th.text-center 구매자명
+                                    th.text-center 구매자 이메일
+                                    th.text-center 상품
+                                    th.text-center 의뢰서 보기
+                                    //if currentUser.profile.isDesigner
+                                    //    th.text-center 의뢰서 보기
+                                    //if currentUser.profile.isManager
+                                    //    th.text-center 의뢰서 보기
+                                    th.text-center 포트폴리오
+                                    if currentUser.profile.isAdmin
+                                        th.text-center 디자이너
+                                    th.text-center 가격
+                                    th.text-center 상태
+                                    if currentUser.profile.isAdmin
+                                        th.text-center 환불하기
+                                    th.text-center 상세보기
+
+
+                            tbody
+                                each sales
+                                    tr
+                                        th.text-center {{ dateFormat this.createdAt }}
+                                        th.text-center {{ effectiveDays this.effectiveDays 'start' }}
+                                        th.text-center {{ effectiveDays this.effectiveDays 'end' }}
+                                        th.text-center {{ userName this.userId }}
+                                        th.text-center {{ userEmail this.userId }}
+                                        th.text-center.productTitle.clickLine {{ product this.productId }}
+                                        th.text-center.request-btn.clickLine [보기]
+                                        //if currentUser.profile.isDesigner
+                                        //    th.text-center.request-btn.clickLine [보기]
+                                        //if currentUser.profile.isManager
+                                        //    th.text-center.request-btn.clickLine [보기]
+                                        th.text-center.portfolioTitle.clickLine {{ portfolio this.portfolioId }}
+                                        if currentUser.profile.isAdmin
+                                            th.text-center.designerTitle.clickLine {{ designer this.designerId }}
+                                        th.text-center {{ priceComma (price this.price this.cancelPrice) }}
+                                        th.text-center {{ this.status }}
+                                        if currentUser.profile.isAdmin
+                                            th.text-center(class="{{ cancelClass this 'class' }}") {{ cancelClass this 'text' }}
+                                        th.text-center.clickLine.detail-btn 상세
+                                        //if currentUser.profile.isDesigner
+                                        //    th.text-center.clickLine -
+                                        //if currentUser.profile.isManager
+                                        //    th.text-center.clickLine -
+                                        //td.text-center
+                                        //    a(href="{{pathFor 'noticeEdit' id=this._id}}")
+                                        //        button.btn.btn-xs.btn-block.btn-default(type="button")
+                                        //            | 수정
+
+
+                            tfoot
+                                tr
+                                    td.footable-visible(colspan='13')
+                                        .pull-right
+                                            button#btnExcel.btn.btn-xs.btn-default(type="button")
+                                                i.fa.fa-file-excel-o
+                                                | 엑셀
+                                tr
+                                    td(colspan='13')
+                                        ul.pagination.pull-right
+                                            +pagination pageTotalCount=pageTotalCount
+
+.requestModal.modal.inmodal(tabindex='-1', role='dialog', aria-hidden='true', style='display: none;')
+    .modal-dialog.modal-lg
+        .modal-content.animated.fadeIn.request-modal-content
+            .modal-header
+                button.close(type='button', data-dismiss='modal')
+                    span(aria-hidden='true') ×
+                    span.sr-only Close
+                h4.modal-title 의뢰서
+
+            .modal-body
+                table.table.table-bordered
+                    tbody
+                        tr
+                            th.text-center(style='font-weight: bold; font-size: 18px;' colspan="2") 기본정보
+                        tr
+                            th 주거유형
+                            th {{requestPopup.detail.homeType}}
+                        tr
+                            th 모바일
+                            th {{requestPopup.detail.mobile}}
+                        tr
+                            th 공간정보1
+                            th
+                                if requestPopup.detail.placeInfoFileUrl1
+                                    a(href='{{requestPopup.detail.placeInfoFileUrl1}}' target='_blank')
+                                        img(style='width : 300px; height: auto;' src='{{requestPopup.detail.placeInfoFileUrl1}}')
+                                //a(href='{{requestPopup.detail.placeInfoFileUrl}}') 보기
+                        tr
+                            th 공간정보2
+                            th
+                                if requestPopup.detail.placeInfoFileUrl2
+                                    a(href='{{requestPopup.detail.placeInfoFileUrl2}}' target='_blank')
+                                        img(style='width : 300px; height: auto;' src='{{requestPopup.detail.placeInfoFileUrl2}}')
+                        tr
+                            th 공간정보3
+                            th
+                                if requestPopup.detail.placeInfoFileUrl3
+                                    a(href='{{requestPopup.detail.placeInfoFileUrl3}}' target='_blank')
+                                        img(style='width : 300px; height: auto;' src='{{requestPopup.detail.placeInfoFileUrl3}}')
+                        tr
+                            th 공간정보4
+                            th
+                                if requestPopup.detail.placeInfoFileUrl4
+                                    a(href='{{requestPopup.detail.placeInfoFileUrl4}}' target='_blank')
+                                        img(style='width : 300px; height: auto;' src='{{requestPopup.detail.placeInfoFileUrl4}}')
+                        tr
+                            th 공간정보5
+                            th
+                                if requestPopup.detail.placeInfoFileUrl5
+                                    a(href='{{requestPopup.detail.placeInfoFileUrl5}}' target='_blank')
+                                        img(style='width : 300px; height: auto;' src='{{requestPopup.detail.placeInfoFileUrl5}}')
+                        tr
+                            th 좋아하는 이미지1
+                            th
+                                if requestPopup.detail.likeImageFileUrl1
+                                    a(href='{{requestPopup.detail.likeImageFileUrl1}}' target='_blank')
+                                        img(style='width : 300px; height: auto;' src='{{requestPopup.detail.likeImageFileUrl1}}')
+                        tr
+                            th 좋아하는 이미지2
+                            th
+                                if requestPopup.detail.likeImageFileUrl2
+                                    a(href='{{requestPopup.detail.likeImageFileUrl2}}' target='_blank')
+                                        img(style='width : 300px; height: auto;' src='{{requestPopup.detail.likeImageFileUrl2}}')
+                        tr
+                            th 좋아하는 이미지3
+                            th
+                                if requestPopup.detail.likeImageFileUrl3
+                                    a(href='{{requestPopup.detail.likeImageFileUrl3}}' target='_blank')
+                                        img(style='width : 300px; height: auto;' src='{{requestPopup.detail.likeImageFileUrl3}}')
+                        tr
+                            th 좋아하는 이미지4
+                            th
+                                if requestPopup.detail.likeImageFileUrl4
+                                    a(href='{{requestPopup.detail.likeImageFileUrl4}}' target='_blank')
+                                        img(style='width : 300px; height: auto;' src='{{requestPopup.detail.likeImageFileUrl4}}')
+                                //a(href='{{requestPopup.detail.likeImageFileUrl}}') 보기
+                        tr
+                            th 좋아하는 이미지5
+                            th
+                                if requestPopup.detail.likeImageFileUrl5
+                                    a(href='{{requestPopup.detail.likeImageFileUrl5}}' target='_blank')
+                                        img(style='width : 300px; height: auto;' src='{{requestPopup.detail.likeImageFileUrl5}}')
+                        if requestPopup.detail.isOfflineServiceInfo
+                            tr
+                                th.text-center(style='font-weight: bold; font-size: 18px;' colspan="2") 오프라인 서비스
+                            tr
+                                th 우편번호
+                                th {{requestPopup.detail.zipcode}}
+                            tr
+                                th 시도
+                                th {{requestPopup.detail.sido}}
+                            tr
+                                th 상세주소
+                                th {{requestPopup.detail.gugun}}
+                            tr
+                                th 평수(평)
+                                th {{requestPopup.detail.size_pyung}}
+                            tr
+                                th 평수(미터)
+                                th {{requestPopup.detail.size_meter}}
+                            tr
+                                th 방갯수
+                                th {{requestPopup.detail.roomCount}}
+                            tr
+                                th 욕실갯수
+                                th {{requestPopup.detail.bathCount}}
+                            tr
+                                th 요청공간
+                                th {{requestPopup.detail.requestPlace}}
+                            tr
+                                th 요청공간(기타)
+                                th {{requestPopup.detail.offlineServiceOtherRequest}}
+                        if requestPopup.detail.isFurnitureStyling
+                            each requestPopup.detail.furnitureArray
+                                tr
+                                    th.text-center(style='font-weight: bold; font-size: 18px;' colspan="2") 가구 스타일링
+                                tr
+                                    th 방종류
+                                    th {{ this.room }}
+                                tr
+                                    th 책상
+                                    th {{ requestText this.desk }}
+                                tr
+                                    th 의자
+                                    th {{ requestText this.chair}}
+                                tr
+                                    th 식탁
+                                    th {{ requestText this.table}}
+                                tr
+                                    th 서랍장
+                                    th {{ requestText this.chest}}
+                                tr
+                                    th 쇼파
+                                    th {{ requestText this.sofa}}
+                                tr
+                                    th 침대
+                                    th {{ requestText this.bed}}
+                                tr
+                                    th 기타 요청사항
+                                    th {{ this.furnitureStylingOtherRequest}}
+                                tr
+                                    th 제품 구매대행
+                                    th {{ requestText this.agent}}
+                                tr
+                                    th 부분 시공 여부
+                                    th {{ requestText this.partBuild}}
+                        if requestPopup.detail.isFabricStyling
+                            each requestPopup.detail.fabricArray
+                                tr
+                                    th.text-center(style='font-weight: bold; font-size: 18px;' colspan="2") 패브릭 스타일링
+                                tr
+                                    th 방종류
+                                    th {{ this.room }}
+                                tr
+                                    th 커튼 : 전체 사이즈 (가로 * 세로)
+                                    th {{ this.curtainSize }}
+                                tr
+                                    th 커튼 : 창 사이즈 (가로 * 세로)
+                                    th {{ this.curtainWindowSize}}
+                                tr
+                                    th 블라인드 : 전체 사이즈 (가로 * 세로)
+                                    th {{ this.blindSize}}
+                                tr
+                                    th 블라인드 : 창 사이즈 (가로 * 세로)
+                                    th {{ this.blindWindowSize}}
+                                tr
+                                    th 기타 : 전체 사이즈 (가로 * 세로)
+                                    th {{ this.otherSize}}
+                                tr
+                                    th 기타 : 창 사이즈 (가로 * 세로)
+                                    th {{ this.otherWindowSize}}
+                                tr
+                                    th 기타 요청사항
+                                    th {{ this.fabricStylingOtherRequest}}
+                                tr
+                                    th 패브릭 시공 요청
+                                    th {{ requestText this.fabricBuild}}
+                        tr
+                            th.text-center(style='font-weight: bold; font-size: 18px;' colspan="2") 기타
+                        tr
+                            th 요청사항
+                            th {{requestPopup.detail.otherRequest}}
+                        tr
+                            th 방문경로
+                            th {{requestPopup.detail.visitPath}}
+                        tr
+                            th 서비스 이용목적
+                            th {{requestPopup.detail.servicePurpose}}
+                        tr
+                            th 인쇄
+                            th
+                                button#print-button.btn.btn-xs(type="button")
+                                    i.fa
+                                    | 인쇄
+
+
+
+.cancelModal.modal.inmodal(tabindex='-1', role='dialog', aria-hidden='true', style='display: none;')
+    .modal-dialog.modal-lg
+        .modal-content.animated.fadeIn
+            .modal-header
+                button.close(type='button', data-dismiss='modal')
+                    span(aria-hidden='true') ×
+                    span.sr-only Close
+                h4.modal-title 환불
+
+            .modal-body
+                table.table.table-bordered
+                    tbody
+                        tr
+                            th 환불 비율
+                            th
+                                select#ratio
+                                    option(value='10') 10%
+                                    option(value='20') 20%
+                                    option(value='30') 30%
+                                    option(value='40') 40%
+                                    option(value='50') 50%
+                                    option(value='60') 60%
+                                    option(value='70') 70%
+                                    option(value='80') 80%
+                                    option(value='90') 90%
+                                    option(value='100') 100%
+
+                        tr
+                            th 은행명
+                            th
+                                select#bankName
+                                    option(value='04') KB국민은행
+                                    option(value='23') SC제일은행
+                                    option(value='39') 경남은행
+                                    option(value='34') 광주은행
+                                    option(value='03') 기업은행
+                                    option(value='11') 농협
+                                    option(value='31') 대구은행
+                                    option(value='32') 부산은행
+                                    option(value='07') 수협
+                                    option(value='88') 신한은행
+                                    option(value='05') 외환은행
+                                    option(value='20') 우리은행
+                                    option(value='71') 우체국
+                                    option(value='37') 전북은행
+                                    option(value='16') 축협
+                                    option(value='81') 하나은행(서울은행)
+                                    option(value='53') 한국씨티은행(한미은행)
+                        tr
+                            th 예금주명
+                            th
+                                input#accountName(type='text', name='accountName' placeholder='예금주명을 입력해주세요.')
+                        tr
+                            th 예금주명
+                            th
+                                input#accountNumber(type='text', name='accountNumber' placeholder='계좌번호를 입력해주세요.')
+                    tfoot
+                        tr
+                            td.footable-visible(colspan='12')
+                                .pull-right
+                                    button#btnCancel.btn.btn-xs(type="button")
+                                        i.fa
+                                        | 환불
+
+.detailModal.modal.inmodal(tabindex='-1', role='dialog', aria-hidden='true', style='display: none;')
+    .modal-dialog.modal-lg
+        .modal-content.animated.fadeIn
+            .modal-header
+                button.close(type='button', data-dismiss='modal')
+                    span(aria-hidden='true') ×
+                    span.sr-only Close
+                h4.modal-title 의뢰서
+
+            .modal-body
+                table.table.table-bordered
+                    tbody
+                        tr
+                            th 결제일
+                            th {{ dateFormat detailPopup.createdAt }}
+                        tr
+                            th 서비스 시작일
+                            th {{ effectiveDays detailPopup.effectiveDays 'start' }}
+                        tr
+                            th 서비스 종료일
+                            th {{ effectiveDays detailPopup.effectiveDays 'end' }}
+                        tr
+                            th 결제액
+                            th {{ priceComma (detailPopup.price) }}원
+                        tr
+                            th 사용자 취소 내역
+                            th {{ priceComma (cancelStatus detailPopup.cancelPrice detailPopup.status '사용자 취소') }}원
+                        tr
+                            th 관리자 환불 내역
+                            th {{ priceComma (cancelStatus detailPopup.cancelPrice detailPopup.status '관리자 환불') }}원
+                        tr
+                            th 최종 판매가격
+                            th {{ priceComma (price detailPopup.price detailPopup.cancelPrice) }}원

@@ -1,0 +1,28 @@
+//.btn-group
+//  if showFirst
+//    button.btn.btn-white.first(type='button')
+//      i.fa.fa-angle-double-left
+//    button.btn.btn-white.previous(type='button')
+//      i.fa.fa-angle-left
+//  each pages
+//    button(class='btn btn-white page {{active this}}') {{ this }}
+//  if showLast
+//    button.btn.btn-white.next(type='button')
+//      i.fa.fa-angle-right
+//    button.btn.btn-white.last(type='button')
+//      i.fa.fa-angle-double-right
+
+if showFirst
+  li.footable-page-arrow.first.disabled
+    a(data-page='first', href='#first') «
+  li.footable-page-arrow.previous.disabled
+    a(data-page='prev', href='#prev') ‹
+each pages
+  li(class='footable-page page {{active this}}')
+    a(data-page='0', href='#') {{ this }}
+if showLast
+  li.footable-page-arrow.next
+    a(data-page='next', href='#next') ›
+  li.footable-page-arrow.last
+    a(data-page='last', href='#last') »
+
