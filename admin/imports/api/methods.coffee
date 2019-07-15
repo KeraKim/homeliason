@@ -481,8 +481,7 @@ Meteor.methods
 
     HTTP.call 'post', "https://api.iamport.kr/users/getToken", {
       data :
-        imp_key : '7188483898255321'
-        imp_secret : '05z9vXYzdvq9Xb2SHBu8j8RpTw60LnALs9UY6TxkoYul9weR8JZsSRSLoYM9lmUOwPMCIjX7istrYIj7'
+   
     }, (error, token) ->
       if error
         console.log 'error :', error
@@ -673,7 +672,7 @@ Meteor.methods
 
   'aligo' : (text, mobile) ->
     msg = encodeURIComponent("#{text}")
-    HTTP.call 'get', "https://apis.aligo.in/?userid=hliaison&key=mnpm8c1h078n2gtpoqgzck6gpfvg0dq2&sender=02-2039-2252&receiver=#{mobile}&msg=#{msg}", {}, (error, response) ->
+    
       if error
         console.log 'error :', error
       else
